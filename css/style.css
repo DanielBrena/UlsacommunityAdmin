@@ -1,0 +1,40 @@
+
+.card .card-action{
+
+z-index: inherit;
+}
+
+.dropdown-content {
+  width: inherit !important;
+}
+
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
+
+ .input-field input[type=text]:focus + label {
+    color: #e91e63;
+  }
+  .input-field .prefix.active {
+       color: #e91e63;
+     }
+     .input-field input[type=text]:focus {
+         border-bottom: 1px solid #e91e63;
+         box-shadow: 0 1px 0 0 #e91e63;
+       }
+
+.card-content-grupos{
+  height: 100px;
+}
+.modal .modal-footer .btn{
+  float: none;
+}
+/**
+waves
+*/

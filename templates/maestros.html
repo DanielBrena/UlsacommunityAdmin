@@ -1,0 +1,165 @@
+<header>
+  <nav class="white pink-text ">
+    <ul class="right hide-on-med-and-down">
+      <li><a class="dropdown-button" data-constrainwidth="false" data-beloworigin="true" data-activates="about-drop" href="#!">About<i class="material-icons left">arrow_drop_down</i></a></li>
+      <li><a class="modal-trigger" href="#signup">Signup</a></li>
+      <li><a class="modal-trigger" href="#sign-in">Sign In</a></li>
+    </ul>
+
+      <a href="#" class="brand-logo center pink-text">ULSACOMMUNTY</a>
+
+
+    <ul id="slide-out" class="side-nav pink">
+      <li><a class="white-text"href="#principal">Principal</a></li>
+      <li><a class="white-text"href="#grupos">Grupos</a></li>
+      <li><a class="white-text"href="#viernes">Viernes Cultural</a></li>
+      <li><a class="white-text"href="#grupos">Grupos</a></li>
+      <li><a class="white-text"href="#semestres">Semestres</a></li>
+      <li><a class="white-text"href="#maestros">Maestros</a></li>
+    </ul>
+
+    <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large pink-text text-pink"><i class="material-icons">menu</i></a>
+  </nav>
+
+
+</header>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card">
+          <form class="col s12 ">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="fa fa-search prefix" aria-hidden="true"></i>
+                <input id="icon_prefix" ng-model="searchMaestro" type="text" class="validate ">
+                <label for="icon_prefix">Nombre o apellidos</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6 l3" ng-repeat="m in maestros | filter:searchMaestro">
+        <div class="card">
+          <div class="card-image circle ">
+                <ng-letter-avatar fontFamily="Roboto" alphabetcolors="alphabetcolors" class="pink" data="{{m.name}}"></ng-letter-avatar>
+                <span class="card-title">{{m.name.split(' ').length > 1 ? m.name.split(' ')[0] : m.name}}</span>
+              </div>
+
+              <div class="card-content">
+
+              </div>
+
+
+          <div class="card-action">
+             <i class="material-icons right button-options"  dropdown data-hover="true" data-activates='dropdown-{{m.id}}'>more_vert</i></span>
+            <p>
+              Lorem ipsum dolor sit amet.
+            </p>
+          </div>
+          <ul id='dropdown-{{m.id}}' class='dropdown-content'>
+
+            <li ><a data-target="#modal2" ng-click="abrirModal(m.groups)" class="modal-trigger maestros-btn-modal">Grupos</a></li>
+            <li><a href="#!">Estadisticas</a></li>
+            <li><a ng-click="abrirModalCuenta(m.user)" >Cuenta</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Eliminar</a></li>
+          </ul>
+
+
+
+      </div>
+    </div>
+
+    <div id="modal-cuenta" class="modal modal-fixed-footer ">
+      <div class="modal-content " ng-form="formularioUsuario">
+
+        <div class="row">
+
+          <div class="col l6 offset-l3" >
+            <div input-field>
+                <input type="text" name="usuario" length="150" class="validate" ng-model="usuario.username" required >
+                <label  for="usuario" data-error="Debe ingresar un usuario" >Usuario</label>
+            </div>
+            <div input-field>
+                <input type="email" name="email"  class="validate" ng-model="usuario.email" required >
+                <label  for="usuario" data-error="Debe ingresar un usuario" >Corre electronico</label>
+            </div>
+            <div input-field>
+                <input type="password" name="password"  class="validate"   ng-model="usuario.password" >
+                <label  for="usuario" data-error="Debe ingresar un usuario">Contraseña</label>
+            </div>
+            <input type="checkbox" ng-model="usuario.active"  id="test5" />
+            <label for="test5">Activo</label>
+
+
+
+          </div>
+
+
+
+      </div>
+      <div class="modal-footer center-align">
+
+        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+          <i class="fa fa-close rigth" aria-hidden="true"></i>
+        </button>
+
+        <button ng-disabled="formularioUsuario.$invalid" ng-click="actualizarUsuario(usuario,password)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+          <i class="material-icons right">send</i>
+        </button>
+
+
+
+
+
+
+      </div>
+    </div>
+
+    <div id="modal2" class="modal bottom-sheet ">
+      <div class="modal-content white-text">
+        <div class="row">
+          <div class="col s12 m3 l1" ng-repeat="g in grupos">
+
+              <div class="card" ui-sref="alumnos({id:g.id})">
+                <div class="card-image circle ">
+
+                  <ng-letter-avatar fontFamily="Roboto" alphabetcolors="alphabetcolors" class="pink" data="{{g.name}}" ></ng-letter-avatar>
+                </div>
+                <div class="card-content blue-text  ">
+                  <h6 class="center-align">{{g.name}}</h6>
+                </div>
+
+
+
+              </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="page-footer pink">
+          <div class="container">
+            <div class="row">
+              <div class="col l12 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 ULSACOMMUNITY TEAM
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
