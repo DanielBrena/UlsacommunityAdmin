@@ -1,11 +1,15 @@
 (function() {
 
     'use strict';
-    app.controller('ViernesCtrl', function($scope,$filter,$window, $state,AlumnosFactory,ViernesFactory,Notification){
+    app.controller('ViernesCtrl', function($scope,$filter,$window, $state,AlumnosFactory,ViernesFactory,Notification,Auth){
       $scope.alphabetcolorsHombre = ["#90caf9"];
       $scope.alphabetcolorsMujer = ["#f48fb1"];
       $scope.alumno = {};
       $scope.alumno.groups = {};
+
+      $scope.cerrarSesion = function(){
+        Auth.logout();
+      }
 
 
       $('.button-collapse').sideNav('hide');

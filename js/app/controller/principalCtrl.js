@@ -1,11 +1,15 @@
 (function() {
 
     'use strict';
-    app.controller('PrincipalCtrl', function($scope,$filter, $state,AlumnosFactory,ViernesFactory,MaestrosFactory,GruposFactory){
+    app.controller('PrincipalCtrl', function($scope,$filter, $state,AlumnosFactory,ViernesFactory,MaestrosFactory,GruposFactory,Auth){
       $scope.viernes = {};
       $scope.total = [];
       $scope.fechas = [];
       $scope.series = ['Viernes culturales'];
+
+      $scope.cerrarSesion = function(){
+        Auth.logout();
+      }
 
       function getAllAlumnos(){
         AlumnosFactory.getAllAlumnos().success(function(data){

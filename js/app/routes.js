@@ -23,35 +23,35 @@ angular.module('ulsa.routes', ['ulsa.levels'])
       templateUrl: 'templates/grupos.html',
       controller: 'GruposCtrl',
       data: {
-        access: AccessLevels.user
+        access: AccessLevels.admin
       }
     }).state('alumnos',{
       url: '/grupos/:id',
       templateUrl: 'templates/alumnos.html',
       controller: 'AlumnosCtrl',
       data: {
-        access: AccessLevels.anon
+        access: AccessLevels.admin
       }
     }).state('viernes',{
       url: '/viernes',
       templateUrl: 'templates/viernes.html',
       controller: 'ViernesCtrl',
       data: {
-        access: AccessLevels.anon
+        access: AccessLevels.user
       }
     }).state('semestres',{
       url: '/semestres',
       templateUrl: 'templates/semestres.html',
       controller: 'SemestresCtrl',
       data: {
-        access: AccessLevels.anon
+        access: AccessLevels.admin
       }
     }).state('maestros',{
       url: '/maestros',
       templateUrl: 'templates/maestros.html',
       controller: 'MaestrosCtrl',
       data: {
-        access: AccessLevels.anon
+        access: AccessLevels.admin
       }
     });
      $urlRouterProvider.otherwise('/');

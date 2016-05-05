@@ -1,7 +1,9 @@
-app.factory('Auth',  function($http, LocalFactory,AccessLevels,CONFIG) {
+app.factory('Auth',  function($http,$state, LocalFactory,AccessLevels,CONFIG) {
   return {
     authorize: function(access) {
       if (access === AccessLevels.user) {
+        
+        console.log(this.isAuthenticated());
         return this.isAuthenticated();
       } else {
         return true;
@@ -19,7 +21,7 @@ app.factory('Auth',  function($http, LocalFactory,AccessLevels,CONFIG) {
     },
     logout:function(){
 			LocalFactory.unset("token_admin");
-      LocalFactory.clear();
+      LocalFactory.removeAll();
       $state.go('login');
 		}
   }
