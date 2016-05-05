@@ -6,19 +6,18 @@
       <li><a class="modal-trigger" href="#sign-in">Sign In</a></li>
     </ul>
 
-      <a href="#" class="brand-logo center pink-text">ULSACOMMUNTY</a>
+      <a href="#" class="brand-logo center pink-text">ULSACOMMUNITY</a>
 
 
     <ul id="slide-out" class="side-nav pink">
       <li><a class="white-text"href="#principal">Principal</a></li>
-      <li><a class="white-text"href="#grupos">Grupos</a></li>
       <li><a class="white-text"href="#viernes">Viernes Cultural</a></li>
       <li><a class="white-text"href="#grupos">Grupos</a></li>
       <li><a class="white-text"href="#semestres">Semestres</a></li>
       <li><a class="white-text"href="#maestros">Maestros</a></li>
     </ul>
 
-    <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large pink-text text-pink"><i class="material-icons">menu</i></a>
+    <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large pink-text text-pink"><i class="fa fa-bars" aria-hidden="true"></i></a>
   </nav>
 
 
@@ -27,59 +26,77 @@
   <div class="container">
     <div class="row">
       <div class="col s12 m4 l3">
-        <div class="card">
-          <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+        <div class="card center-align">
+          <div class="card-content ">
+              <h1 class="grey-text">{{alumnos.length}}</h1>
               </div>
-              <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          <div class="card-action purple white-text">
+            <h6>ALUMNOS</h6>
           </div>
         </div>
       </div>
       <div class="col s12 m4 l3">
-        <div class="card">
-          <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+        <div class="card center-align">
+          <div class="card-content ">
+              <h1 class="grey-text">{{grupos.length}}</h1>
               </div>
+          <div class="card-action blue white-text">
+            <h6>GRUPOS</h6>
+
+          </div>
         </div>
       </div>
       <div class="col s12 m4 l3">
-        <div class="card">
-          <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+        <div class="card center-align">
+          <div class="card-content ">
+              <h1 class="grey-text">{{maestros.length}}</h1>
               </div>
+          <div class="card-action teal white-text">
+            <h6>MAESTROS</h6>
+          </div>
         </div>
       </div>
       <div class="col s12 m4 l3">
-        <div class="card">
-          <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+        <div class="card center-align">
+          <div class="card-content ">
+              <h1 class="grey-text">{{viernes.length}}</h1>
               </div>
+          <div class="card-action lime white-text">
+            <h6>VIERNES CULTURAL</h6>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-l12">
+        <div class="divider"></div>
+        <div class="section">
+          <h5 class="grey-text">Estadisticas de Viernes Cultural</h5>
+        </div>
+        <canvas id="bar" class="chart chart-bar"
+          chart-data="total" chart-labels="fechas" chart-series="series">
+        </canvas
       </div>
     </div>
   </div>
 </main>
 
 <footer class="page-footer pink">
-          <div class="container">
-            <div class="row">
-              <div class="col l12 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
+  <div class="container">
+    <div class="row">
+      <div class="col l12 s12">
+        <!-- <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
 
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2016 ULSACOMMUNITY TEAM
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
+      </div>
+
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2016 ULSACOMMUNITY TEAM
+      <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+    </div>
+  </div>
+</footer>

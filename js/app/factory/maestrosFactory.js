@@ -2,6 +2,10 @@
     'use strict';
     app.factory('MaestrosFactory', function(CONFIG,$http){
       return{
+        getAllMaestros:function(){
+          var resultado = $http.get(CONFIG.APIURL + "statistics/allTeachers");
+          return resultado;
+        },
         getMaestros:function(){
           var resultado = $http.get(CONFIG.APIURL + "teachers");
           return resultado;

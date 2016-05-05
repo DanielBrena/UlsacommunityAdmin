@@ -8,11 +8,12 @@
       $scope.alphabetcolors = ["#ff1744","#f50057","#d500f9","#651fff","#3d5afe","#2979ff"];//,"#1de9b6","#00b0ff","#00e5ff","#00e676","#76ff03","#c6ff00","#f9a825","#ff8f00","#ef6c00"];
       $('.button-collapse').sideNav('hide');
       $(".button-collapse").sideNav();
-      $('.maestros-btn-modal').leanModal();
+      //$('.maestros-btn-modal').leanModal();
 
       $scope.abrirModal = function(g){
         $scope.grupos = g;
-          $('#modal2').openModal();
+        console.log(g);
+          $('#modal-grupos').openModal();
       }
 
       $scope.abrirModalCuenta = function(u){

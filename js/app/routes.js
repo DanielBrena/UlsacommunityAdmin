@@ -4,19 +4,26 @@ angular.module('ulsa.routes', ['ulsa.levels'])
 
 
     $stateProvider.
-    state('principal', {
+    state('login', {
       url: '/',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl',
+      data: {
+        access: AccessLevels.anon
+      }
+    }).state('principal', {
+      url: '/principal',
       templateUrl: 'templates/principal.html',
       controller: 'PrincipalCtrl',
       data: {
-        access: AccessLevels.anon
+        access: AccessLevels.user
       }
     }).state('grupos',{
       url: '/grupos',
       templateUrl: 'templates/grupos.html',
       controller: 'GruposCtrl',
       data: {
-        access: AccessLevels.anon
+        access: AccessLevels.user
       }
     }).state('alumnos',{
       url: '/grupos/:id',

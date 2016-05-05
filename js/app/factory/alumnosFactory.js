@@ -2,6 +2,10 @@
     'use strict';
     app.factory('AlumnosFactory', function(CONFIG,$http){
       return{
+        getAllAlumnos:function(){
+          var resultado = $http.get(CONFIG.APIURL + "statistics/allStudents");
+          return resultado;
+        },
         getAlumnos:function(id){
           var resultado = $http.get(CONFIG.APIURL + "groups/"+id);
           return resultado;

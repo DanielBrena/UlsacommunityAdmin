@@ -2,6 +2,10 @@
     'use strict';
     app.factory('ViernesFactory', function(CONFIG,$http){
       return{
+        getAllViernes:function(){
+          var resultado = $http.get(CONFIG.APIURL + "statistics/allViernes");
+          return resultado;
+        },
         createAsistencia:function(alumno,grupo){
           var asistencia = {};
           asistencia.alumno = alumno;

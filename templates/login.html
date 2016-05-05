@@ -1,0 +1,64 @@
+<div class="background">
+</div>
+<video autoplay loop  id="bgvid" webkit-playsinline requestFullScreen>
+  <source src="video/ulsacommunity1.mp4" type="video/mp4">
+</video>
+
+<header>
+
+</header>
+<main>
+
+  <div class="container">
+
+      <div class="row">
+        <div class="col l6 offset-l3">
+          <div class="logo center-align">
+            <img src="img/logo.png" class="responsive-img" alt="" />
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col l6 offset-l3">
+          <div id="login" class=" ">
+              <div class="card" ng-form="formularioLogin" >
+                <div class="card-content">
+                  <span class="card-title">Acceso</span>
+                  <div class="row">
+                    <div class="col l12">
+
+                      <div class="input-field col l12">
+                       <input id="email" type="email" class="validate" required ng-model="usuario.email">
+                       <label for="email">Correo electronio</label>
+                     </div>
+
+                     <div class="input-field col l12">
+                      <input id="password" type="password" class="validate" required ng-model="usuario.password">
+                      <label for="password">Contraseña</label>
+                    </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <div class="right-align">
+                    <button ng-disabled="formularioLogin.$invalid" ng-click="login(usuario)" class="btn waves-effect waves-light right-align pink" type="submit" name="action">Acceder
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    
+  </div>
+
+</main>
+
+<footer>
+
+</footer>
