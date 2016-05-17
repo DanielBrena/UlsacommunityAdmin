@@ -35,7 +35,7 @@
       }
 
       function fecha(){
-        var currentTime = new Date();
+        var currentTime = new Date().toISOString();
         $scope.asistencias.fecha = currentTime;
         $scope.month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         $scope.monthShort = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -60,7 +60,8 @@
         delete $scope.asistencias.type;
         console.log($scope.asistencias);
         $scope.asistencias.estudiantes = JSON.stringify($scope.asistencias.estudiantes);
-        $scope.asistencias.fecha = $filter('date')($scope.asistencias.fecha,'yyyy-MMMM-dd');
+        $scope.asistencias.fecha = $filter('date')($scope.asistencias.fecha,'yyyy-MM-dd');
+
         AlumnosFactory.sendAsistencias($scope.asistencias).success(function(data){
           console.log(data);
            Notification.success('Asistencia Actualizada');
