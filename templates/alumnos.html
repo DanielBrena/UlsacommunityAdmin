@@ -34,7 +34,7 @@
       <div class="row">
         <div class="input-field col s12 m12 l12">
           <i class="fa fa-search prefix" aria-hidden="true"></i>
-          <input id="icon_prefix" type="text" ng-model="searchAlumno" class="validate">
+          <input id="icon_prefix" type="text" ng-model="query1" class="validate">
           <label for="icon_prefix">Nombre o matricula</label>
         </div>
 
@@ -42,7 +42,7 @@
     </form>
   </div>
         <div class="row">
-          <div class="col s12 m3 l3" ng-repeat="a in grupo.students | filter:searchAlumno">
+          <div class="col s12 m3 l3" ng-repeat="a in grupo.students | filter:query1">
             <div class="card">
               <div class="card-image  ">
                 <div class="" ng-if="a.gender == 'hombre'">
@@ -57,15 +57,15 @@
 
 
               <div class="card-content">
-                <i class="fa fa-ellipsis-v  right button-options"  dropdown data-hover="true" data-activates='dropdown1'></i></span>
+                <i class="fa fa-ellipsis-v  right button-options"  dropdown data-hover="true" data-activates='dropdown-{{a.id}}'></i></span>
                 <p>
                   {{a.name.split(' ').length > 1 ? a.name.split(' ')[0]: a.name | uppercase}}
                 </p>
               </div>
-              <ul id='dropdown1' class='dropdown-content'>
+              <ul id='dropdown-{{a.id}}' class='dropdown-content'>
                 <li><a href="#grupos/2123">Información</a></li>
                 <li><a href="#!">Estadisticas</a></li>
-                <li><a href="#!">Asistencias</a></li>
+                <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Remover</a></li>
               </ul>
@@ -77,13 +77,20 @@
 
 
       </div>
-      <div class="col s12 m4 l4">
+      <div class="col s12 m4 l4" ng-show="asistenciasAlumno">
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card ">
               <div class="card-image  ">
-                <img src="http://8h3d8qo.preview.sasites.com.mx/img/upload/universidad-la-salle-oaxaca_03.jpg">
-                <span class="card-title">Daniel Brena Aquino</span>
+                <div class="" ng-if="asistenciasAlumno.gender == 'hombre'">
+                  <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#90caf9" data="{{asistenciasAlumno.name}}"></ng-letter-avatar>
+
+                </div>
+                <div class="" ng-if="asistenciasAlumno.gender == 'mujer'">
+                  <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#f48fb1" data="{{asistenciasAlumno.name}}"></ng-letter-avatar>
+
+                </div>
+                <span class="card-title">{{asistenciasAlumno.name}}</span>
               </div>
                 <div class="card-action">
                   <div class="row center-align ">
@@ -106,6 +113,20 @@
                         <p>
                           10
                         </p>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="card-content">
+                  <div class="row">
+                    <div class="col l12">
+                      <ul class="collection with-header">
+                        <li class="collection-header"><h5>Asistencias</h5></li>
+                        <li class="collection-item " ng-class="{pink:a.type2 =='viernes cultural', 'lighten-5':a.type2 =='viernes cultural'}" ng-repeat="a in asistenciasAlumno.assistances  track by a.id"><div><strong>{{a.type2 =='viernes cultural' ? 'V: ' :'A: '}}</strong> {{a.date | date : 'dd-MMMM-yyyy'}}<p class="secondary-content"><input  type="checkbox" id="checkbox-{{a.id}}" name="checkbox-{{a.id}}" ng-change="cambiarAsistencia(a)" ng-model="a.type" id="test5"/>
+                        <label for="checkbox-{{a.id}}">{{a.type ? 'Asistencia' : 'Inasistencia'}}</label></p></div></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -133,10 +154,160 @@
       <i class="large fa fa-plus"></i>
     </a>
     <ul>
+      <li>
+        <a ng-click="abrirModalAlumnos()" class="btn-floating green"><i class="fa fa-user" aria-hidden="true"></i>
+        </a>
+      </li>
+
+      <li>
+        <a ng-click="abrirModalAsistencias()" class="btn-floating green"><i class="fa fa-calendar" aria-hidden="true"></i>
+        </a>
+      </li>
+
 
     </ul>
   </div>
   </main>
+
+  <div id="modal-alumnos" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <div class="row center-align">
+        <div class="col l10">
+          <div class="input-field col s12 m12 l12">
+            <i class="fa fa-search prefix" aria-hidden="true"></i>
+            <input id="icon_prefix" type="text" ng-keyup="searchAllAlumnos(query2)" ng-model="query2" class="validate">
+            <label for="icon_prefix">Nombre o matricula</label>
+          </div>
+        </div>
+
+      </div>
+      <div class="divider" ng-show="alumnosAgregados.length > 0"></div>
+
+      <div class="row">
+        <div class="col l3 alumnoAgregado" ng-repeat="a in alumnosAgregados track by $index">
+          <div class="chip pink white-text">
+           {{a.name.split(' ').length >1 ? a.name.split(' ')[0] :a.name}}
+           <i class="fa fa-times" ng-click="quitarAlumno(a)" aria-hidden="true"></i>
+         </div>
+        </div>
+      </div>
+
+      <div class="divider" ng-show="alumnosAll.length > 0"></div>
+      <div class="row" >
+        <div class="col l12">
+          <ul class="collection" ng-show="alumnosAll.length > 0">
+            <li class="collection-item " ng-repeat="a in alumnosAll" ng-click="agregarAlumnos(a)">
+              <div class="row" >
+                <div class="col s2 m2 l2">
+                  <ng-letter-avatar fontFamily="Roboto" class="circle" alphabetcolors="a.gender == 'hombre' ?alphabetcolorsHombre : alphabetcolorsMujer " shape="round"  data="{{a.name}}"></ng-letter-avatar>
+
+                </div>
+                <div class="col s8 m8 l8">
+                  <span class="title">{{a.name | uppercase}} {{a.lastname | uppercase}} </span>
+                  <h6>{{a.gender | uppercase}}</h6>
+                  <h6>
+
+                    {{a.registration_number}}
+                  </h6>
+                </div>
+              </div>
+
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer center-align">
+
+      <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+        <i class="fa fa-close rigth" aria-hidden="true"></i>
+      </button>
+
+      <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="eliminarGrupo()" type="submit" name="action">Agregar al grupo
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+
+
+
+      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
+    </div>
+  </div>
+
+
+  <div id="modal-asistencias" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <div class="row ">
+        <div class="col l12">
+          <h5>Asistencias</h5>
+          <div class="divider" ></div>
+
+          <div class="row ">
+            <div class="col l6 offset-l3">
+              <div input-field>
+                <input input-date
+                    type="text"
+                    name="created"
+                    id="inputCreated"
+                    ng-model="asistencias.fecha"
+                    container="body"
+                    format="dd/mm/yyyy"
+                    months-full="{{ month }}"
+                    months-short="{{ monthShort }}"
+                    weekdays-full="{{ weekdaysFull }}"
+                    weekdays-short="{{ weekdaysShort }}"
+                    weekdays-letter="{{ weekdaysLetter }}"
+                    disable="disable"
+                    min="{{ minDate }}"
+                    max="{{ maxDate }}"
+                    today="today"
+                    clear="clear"
+                    close="close"
+                    select-years="15"
+                    on-start="onStart()"
+                    on-render="onRender()"
+                    on-open="onOpen()"
+                    on-close="onClose()"
+                    on-set="onSet()"
+                    on-stop="onStop()" />
+                <label for="inputCreated">Fecha</label>
+              </div>
+
+              <input type="checkbox" id="test5" ng-model="asistencias.type"/>
+              <label for="test5">Asistencia</label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="row" >
+        <div class="col l12">
+
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer center-align">
+
+      <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+        <i class="fa fa-close rigth" aria-hidden="true"></i>
+      </button>
+
+      <button  class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAsistencias(asistencia)" type="submit" name="action">Agregar asistencias
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+
+
+
+      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
+    </div>
+  </div>
+
 
   <footer class="page-footer pink">
     <div class="container">

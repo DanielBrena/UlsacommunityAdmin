@@ -67,6 +67,10 @@ body {
 .modal .modal-footer .btn{
   float: none;
 }
+
+.alumnoAgregado{
+  margin-top:5px;
+}
 /**
 waves
 */

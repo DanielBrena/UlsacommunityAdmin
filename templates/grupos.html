@@ -56,11 +56,11 @@
           </div>
           <ul id='dropdown-{{g._id}}' class='dropdown-content'>
 
-            <li ><a >Grupos</a></li>
+            <li ><a ui-sref="alumnos({id:g._id})">Alumnos</a></li>
             <li><a href="#!">Estadisticas</a></li>
-            <li><a  >Cuenta</a></li>
+            <li><a ng-click="abrirModalGrupo(g)" >Editar</a></li>
             <li class="divider"></li>
-            <li><a href="#!">Eliminar</a></li>
+            <li><a ng-click="abrirModalGrupoEliminar(g._id)" >Eliminar</a></li>
           </ul>
 
 
@@ -68,29 +68,79 @@
         </div>
       </div>
 
-      <div id="modal-cuenta" class="modal modal-fixed-footer ">
-        <div class="modal-content " ng-form="formularioUsuario">
+      <div id="modal-grupo-eliminar" class="modal modal-fixed-footer pink">
+        <div class="modal-content white-text">
+          <h4>¿Desea eliminar por completo el grupo?</h4>
+          <p>Al eliminar el grupo se eliminaran todas las calificaciones y asistencias asociadas.</p>
+        </div>
+        <div class="modal-footer">
 
+          <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="eliminarGrupo()" type="submit" name="action">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+
+          <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">
+            <i class="fa fa-close rigth" aria-hidden="true"></i>
+          </button>
+
+          <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
+        </div>
+      </div>
+
+
+      <div id="modal-grupo" class="modal modal-fixed-footer ">
+        <div class="modal-content " ng-form="formularioGrupo">
+          <div class="row">
+            <div class="col l12">
+              <div class="section">
+                <h5>{{grupo._id ? 'Editar grupo':'Crear grupo'}}</h5>
+              </div>
+              <div class="divider">
+
+              </div>
+            </div>
+          </div>
           <div class="row">
 
-            <div class="col l6 offset-l3" >
+            <div class="col l6" >
               <div input-field>
-                <input type="text" name="usuario" length="150" class="validate" ng-model="usuario.username" required >
-                <label  for="usuario" data-error="Debe ingresar un usuario" >Usuario</label>
+                <input type="text" name="usuario" length="150" class="validate" ng-model="grupo.name" required >
+                <label  for="usuario" data-error="Debe ingresar un usuario" >Nombre del grupo</label>
               </div>
+
               <div input-field>
-                <input type="email" name="email"  class="validate" ng-model="usuario.email" required >
-                <label  for="usuario" data-error="Debe ingresar un usuario" >Corre electronico</label>
+                <textarea id="textarea1" ng-model="grupo.description" class="materialize-textarea"></textarea>
+                <label for="textarea1">Descripcion</label>
               </div>
-              <div input-field>
-                <input type="password" name="password"  class="validate"   ng-model="usuario.password" >
-                <label  for="usuario" data-error="Debe ingresar un usuario">Contraseña</label>
-              </div>
-              <input type="checkbox" ng-model="usuario.active"  id="test5" />
+              <input type="checkbox" ng-model="grupo.status"  id="test5" />
               <label for="test5">Activo</label>
 
 
 
+            </div>
+            <div class="col l6">
+              <div class="input-field col l12">
+                <select  ng-model="grupo.type" required class="browser-default"  >
+                  <option value="" disabled selected>Selecciona un tipo</option>
+                  <option value="interno">Interno</option>
+                  <option value="externo">Externo</option>
+                  <option value="reposicion">Reposición</option>
+                </select>
+              </div>
+
+              <div class="input-field col l12">
+                <select  class="browser-default" required ng-model="grupo.activity"  ng-options="actividad.id as actividad.name for actividad in actividades" >
+                  <option value="" disabled selected>Selecciona una actividad</option>
+
+                </select>
+              </div>
+
+              <div class="input-field col l12">
+                <select  class="browser-default" required ng-model="grupo.semester"  ng-options="semestre.id as semestre.name for semestre in semestres" >
+                  <option value="" disabled selected>Selecciona un semestre</option>
+
+                </select>
+              </div>
             </div>
 
 
@@ -102,20 +152,30 @@
               <i class="fa fa-close rigth" aria-hidden="true"></i>
             </button>
 
-            <button ng-disabled="formularioUsuario.$invalid" ng-click="actualizarUsuario(usuario,password)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
-              <i class="material-icons right">send</i>
+            <button ng-show="grupo._id" ng-disabled="formularioGrupo.$invalid" ng-click="actualizarGrupo(grupo)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
             </button>
 
-
-
-
-
+            <button ng-hide="grupo._id" ng-disabled="formularioGrupo.$invalid" ng-click="crearGrupo(grupo)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            </button>
 
           </div>
         </div>
       </div>
 
     </div>
+  </div>
+
+
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </a>
+    <ul>
+      <li><a ng-click="abrirModalGrupo({})" class="btn-floating green"><i class="fa fa-plus fa-fw" aria-hidden="true"></i></a></li>
+    </ul>
+  
   </div>
 
 </main>

@@ -10,6 +10,18 @@
           var resultado = $http.get(CONFIG.APIURL + "groups/"+id);
           return resultado;
         },
+        sendAsistencias:function(asistencias){
+          var resultado = $http.post(CONFIG.APIURL + "assistances/createAll",asistencias);
+          return resultado;
+        },
+        getAsistencias:function(idStudent,idGroup){
+          var resultado = $http.get(CONFIG.APIURL + "students/"+idStudent +"/assistancesByGroup/" + idGroup);
+          return resultado;
+        },
+        updataAsistencia:function(asistencia){
+          var resultado = $http.put(CONFIG.APIURL + "assistances/" + asistencia.id,asistencia);
+          return resultado;
+        },
         findAlumno:function(query){
           var resultado = $http.post(CONFIG.APIURL + "students/findByQuery",{search:query});
           return resultado;
