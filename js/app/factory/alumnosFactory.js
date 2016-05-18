@@ -34,6 +34,15 @@
           var resultado = $http.post(CONFIG.APIURL + "students",alumno);
           return resultado;
         },
+        removeAlumno:function(alumno){
+          var resultado = $http.post(CONFIG.APIURL + "groups/removeStudent",alumno);
+          return resultado;
+        },
+
+        addAlumnos:function(estudiantes){
+          var resultado = $http.post(CONFIG.APIURL + "groups/addStudents",estudiantes);
+          return resultado;
+        },
         createSemestre:function(teacher){
           var resultado = $http.post(CONFIG.APIURL + "teachers",teacher);
           return resultado;

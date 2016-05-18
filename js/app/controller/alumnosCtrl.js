@@ -5,7 +5,7 @@
       $scope.id = $stateParams.id;
       $scope.alphabetcolors = ["#1de9b6","#00b0ff","#00e5ff","#00e676","#76ff03","#c6ff00","#f9a825","#ff8f00","#ef6c00"];
       $scope.alumnosAgregados = [];
-
+      $scope.grupo = {};
       $scope.asistencias = {};
 
       $('.button-collapse').sideNav('hide');
@@ -13,14 +13,20 @@
 
 
       function getAlumnos(){
-        AlumnosFactory.getAlumnos($scope.id).success(function(data){
-          console.log(data);
-          $scope.grupo = data;
-          $scope.titulo = data.name;
-          //$scope.alumnos = data.students;
-        }).error(function(e){
+        setTimeout(function() {
+          AlumnosFactory.getAlumnos($scope.id).success(function(data){
+            console.log(data);
+            $scope.grupo = data;
+            $scope.titulo = data.name;
+            //$scope.alumnos = data.students;
+          }).error(function(e){
 
-        });
+          });
+
+          $scope.$apply();
+        }, 1000);
+
+
       }
 
       getAlumnos();
@@ -106,11 +112,41 @@
         var busqueda = _.find($scope.alumnosAgregados,function(val){
           return a.id === val.id;
         });
-        console.log(busqueda);
+
         if(busqueda === undefined){
           $scope.alumnosAgregados.push(a);
+          console.log(a);
         }
 
+      }
+
+      $scope.agregarAlumnosGrupo = function(){
+        console.log($scope.alumnosAgregados);
+        var alumnoGrupo = {};
+        alumnoGrupo.estudiantes = JSON.stringify($scope.alumnosAgregados);
+        alumnoGrupo.grupo = $scope.grupo.id;
+        console.log(alumnoGrupo);
+        AlumnosFactory.addAlumnos(alumnoGrupo).success(function(data){
+          Notification.success(data.message);
+          getAlumnos();
+        }).error(function(e){
+          Notification.error("Error, no se agregaron los alumnos");
+        });
+      }
+
+      $scope.removerAlumno = function(a){
+        console.log(a);
+        var alumno = {};
+        alumno.estudiante = a;
+        alumno.grupo = $scope.grupo.id;
+        console.log(alumno);
+        AlumnosFactory.removeAlumno(alumno).success(function(data){
+          console.log(data);
+          Notification.success(data.message);
+          getAlumnos();
+        }).error(function(e){
+          Notification.error("Error, no se pudo remover el alumno");
+        });
       }
 
       $scope.quitarAlumno = function(alumno){
