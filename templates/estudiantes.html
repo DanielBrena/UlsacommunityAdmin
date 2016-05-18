@@ -42,8 +42,16 @@
       <div class="col s12 m6 l3" ng-repeat="e in estudiantes | filter:query">
         <div class="card">
           <div class="card-image circle ">
-                <ng-letter-avatar fontFamily="Roboto" alphabetcolors="alphabetcolors" class="pink" data="{{e.name}}"></ng-letter-avatar>
-                <span class="card-title">{{e.name.split(' ').length > 1 ? e.name.split(' ')[0] : e.name}}</span>
+            <div class="" ng-if="e.gender == 'hombre'">
+              <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#90caf9" data="{{e.name}}"></ng-letter-avatar>
+
+            </div>
+            <div class="" ng-if="e.gender == 'mujer'">
+              <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#f48fb1" data="{{e.name}}"></ng-letter-avatar>
+
+            </div>
+            <span class="card-title">{{e.name.split(' ').length > 1 ? e.name.split(' ')[0] : e.name}}</span>
+
               </div>
 
               <div class="card-content">
