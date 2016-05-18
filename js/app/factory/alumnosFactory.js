@@ -14,6 +14,10 @@
           var resultado = $http.post(CONFIG.APIURL + "assistances/createAll",asistencias);
           return resultado;
         },
+        deleteAsistencias:function(asistencias){
+          var resultado = $http.post(CONFIG.APIURL + "assistances/deleteAll",asistencias);
+          return resultado;
+        },
         getAsistencias:function(idStudent,idGroup){
           var resultado = $http.get(CONFIG.APIURL + "students/"+idStudent +"/assistancesByGroup/" + idGroup);
           return resultado;

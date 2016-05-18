@@ -70,6 +70,18 @@
         });
       }
 
+      $scope.eliminarAsistencias = function(){
+        $scope.asistencias.grupo = $scope.grupo.id;
+        $scope.asistencias.fecha = $filter('date')($scope.asistencias.fecha,'yyyy-MM-dd');
+        AlumnosFactory.deleteAsistencias($scope.asistencias).success(function(data){
+          Notification.success('Asistencias eliminadas');
+          console.log(data);
+        }).error(function(e){
+          Notification.error('No se pudo eliminar');
+        });
+
+      }
+
       $scope.obtenerAsistencias = function(a){
         AlumnosFactory.getAsistencias(a.id,$scope.grupo.id).success(function(data){
           console.log(data);
