@@ -32,6 +32,13 @@ angular.module('ulsa.routes', ['ulsa.levels'])
       data: {
         access: AccessLevels.admin
       }
+    }).state('estudiantes',{
+      url: '/estudiantes',
+      templateUrl: 'templates/estudiantes.html',
+      controller: 'EstudiantesCtrl',
+      data: {
+        access: AccessLevels.admin
+      }
     }).state('viernes',{
       url: '/viernes',
       templateUrl: 'templates/viernes.html',

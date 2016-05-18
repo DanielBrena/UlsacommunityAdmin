@@ -30,6 +30,10 @@
           var resultado = $http.post(CONFIG.APIURL + "students/findByQuery",{search:query});
           return resultado;
         },
+        createAlumno:function(alumno){
+          var resultado = $http.post(CONFIG.APIURL + "students",alumno);
+          return resultado;
+        },
         createSemestre:function(teacher){
           var resultado = $http.post(CONFIG.APIURL + "teachers",teacher);
           return resultado;
