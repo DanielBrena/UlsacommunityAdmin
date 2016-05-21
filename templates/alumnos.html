@@ -58,8 +58,9 @@
 
               <div class="card-content">
                 <i class="fa fa-ellipsis-v  right button-options"  dropdown data-hover="true" data-activates='dropdown-{{a.id}}'></i></span>
-                <p>
+                <p style="font-size:.7em">
                   {{a.name.split(' ').length > 1 ? a.name.split(' ')[0]: a.name | uppercase}}
+                  {{a.lastname.split(' ').length > 1 ? a.lastname.split(' ')[0]: a.lastname | uppercase}}
                 </p>
               </div>
               <ul id='dropdown-{{a.id}}' class='dropdown-content'>
@@ -90,7 +91,11 @@
                   <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#f48fb1" data="{{asistenciasAlumno.name}}"></ng-letter-avatar>
 
                 </div>
-                <span class="card-title">{{asistenciasAlumno.name}}</span>
+                <span class="card-title">
+                  {{asistenciasAlumno.name.split(' ').length > 1 ? asistenciasAlumno.name.split(' ')[0]: asistenciasAlumno.name | uppercase}}
+                  {{asistenciasAlumno.lastname.split(' ').length > 1 ? asistenciasAlumno.lastname.split(' ')[0]: asistenciasAlumno.lastname | uppercase}}
+
+                </span>
               </div>
                 <div class="card-action">
                   <div class="row center-align ">
