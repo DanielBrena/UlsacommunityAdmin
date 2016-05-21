@@ -2,7 +2,7 @@ app.factory('Auth',  function($http,$state, LocalFactory,AccessLevels,CONFIG) {
   return {
     authorize: function(access) {
       if (access === AccessLevels.user) {
-        
+
         console.log(this.isAuthenticated());
         return this.isAuthenticated();
       } else {
@@ -15,6 +15,7 @@ app.factory('Auth',  function($http,$state, LocalFactory,AccessLevels,CONFIG) {
     login: function(usuario) {
       var login = $http.post(CONFIG.APIURL + 'auth', usuario);
       login.success(function(data) {
+        console.log(data);
         LocalFactory.set('token_admin', JSON.stringify(data));
       });
       return login;

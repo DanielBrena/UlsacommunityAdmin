@@ -2,7 +2,7 @@
 
     'use strict';
     app.controller('EstudiantesCtrl', function($scope, $state,Notification,AlumnosFactory){
-      $scope.estudiante = {};
+      $scope.alumno = {};
 
       $scope.abrirModalGrupo = function(g){
         $('#modal-alumno').openModal();
@@ -21,7 +21,7 @@
 
       $scope.searchAlumno = function(query){
         if(query != ''){
-          $scope.estudiante = null;
+          //$scope.estudiante = null;
           AlumnosFactory.findAlumno(query).success(function(data){
             console.log(data);
             $scope.estudiantes = data.students;
