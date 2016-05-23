@@ -7,6 +7,7 @@
       $scope.alumnosAgregados = [];
       $scope.grupo = {};
       $scope.asistencias = {};
+      $scope.alumno = {};
 
       $('.button-collapse').sideNav('hide');
       $(".button-collapse").sideNav();
@@ -55,6 +56,15 @@
 
       }
       fecha();
+
+      $scope.agregarAsistencia = function(a){
+        $("#modal-asistencias").openModal();
+        console.log(a);
+      }
+
+      $scope.agregarAsistencia = function(){
+
+      }
 
       $scope.agregarAsistencias = function(){
         $scope.asistencias.estudiantes = $scope.grupo.students;

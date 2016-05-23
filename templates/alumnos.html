@@ -66,6 +66,7 @@
               <ul id='dropdown-{{a.id}}' class='dropdown-content'>
                 <li><a href="#grupos/2123">Información</a></li>
                 <li><a href="#!">Estadisticas</a></li>
+                <li><a ng-click="agregarAsistencia(a)">Agregar Asistencia</a></li>
                 <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
                 <li class="divider"></li>
                 <li><a ng-click="removerAlumno(a)">Remover</a></li>
@@ -279,6 +280,14 @@
                 <label for="inputCreated">Fecha</label>
               </div>
 
+              <div class="input-field col l12">
+                <select  ng-model="asistencias.type2" required class="browser-default"  >
+                  <option value="" disabled selected>Tipo de asistencia</option>
+                  <option value="asistencia">Asistencia</option>
+                  <option value="viernes cultural">Viernes cultural</option>
+                </select>
+              </div>
+
               <input type="checkbox" id="test5" ng-model="asistencias.type"/>
               <label for="test5">Asistencia</label>
             </div>
@@ -303,7 +312,11 @@
         <i class="fa fa-close rigth" aria-hidden="true"></i>
       </button>
 
-      <button  class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAsistencias(asistencia)" type="submit" name="action">Agregar asistencias
+      <button ng-hide="alumno"  class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAsistencias(asistencia)" type="submit" name="action">Agregar asistencias
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+
+      <button ng-show="alumno" class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAsistencia(asistencia)" type="submit" name="action">Agregar asistencias
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
 
