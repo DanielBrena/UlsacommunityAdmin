@@ -7,8 +7,6 @@
       $scope.alumnosAgregados = [];
       $scope.grupo = {};
       $scope.asistencias = {};
-      $scope.alumno = {};
-
       $('.button-collapse').sideNav('hide');
       $(".button-collapse").sideNav();
 
@@ -33,11 +31,13 @@
       getAlumnos();
 
       $scope.abrirModalAlumnos = function(){
-        $('#modal-alumnos').openModal();
+
         $scope.alumnosAgregados = [];
+        $('#modal-alumnos').openModal();
       }
 
       $scope.abrirModalAsistencias = function(){
+        $scope.alumno = null;
         $("#modal-asistencias").openModal();
       }
 
@@ -57,12 +57,23 @@
       }
       fecha();
 
-      $scope.agregarAsistencia = function(a){
-        $("#modal-asistencias").openModal();
-        console.log(a);
-      }
+      $scope.agregarAsistenciaModal = function(a){
 
+        $("#modal-asistencias").openModal();
+        $scope.alumno = a;
+
+
+
+      }
       $scope.agregarAsistencia = function(){
+        var asistencia = {};
+
+        asistencia.alumno = $scope.alumno.id;
+        asistencia.grupo = $scope.grupo.id;
+        asistencia.asistenciabool = $scope.asistencias.type;
+        asistencia.asistenciastring = $scope.asistencias.type2;
+        asistencia.fecha = $scope.asistencias.fecha;
+        console.log(asistencia);
 
       }
 

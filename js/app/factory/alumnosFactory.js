@@ -14,6 +14,10 @@
           var resultado = $http.post(CONFIG.APIURL + "assistances/createAll",asistencias);
           return resultado;
         },
+        sendAsistencia:function(asistencia){
+          var resultado = $http.post(CONFIG.APIURL + "assistances/create",asistencia);
+          return resultado;
+        },
         deleteAsistencias:function(asistencias){
           var resultado = $http.post(CONFIG.APIURL + "assistances/deleteAll",asistencias);
           return resultado;
