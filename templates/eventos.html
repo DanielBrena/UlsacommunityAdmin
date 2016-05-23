@@ -1,0 +1,267 @@
+<header>
+  <nav class="white pink-text ">
+    <ul class="right hide-on-med-and-down">
+      <li><a class="modal-trigger pink-text" href="#signup">Cerrar sesión</a></li>
+    </ul>
+
+      <a href="#" class="brand-logo center pink-text">{{titulo}}</a>
+
+
+      <ul id="slide-out" class="side-nav pink">
+        <li><a class="white-text"href="#principal">Principal</a></li>
+        <li><a class="white-text"href="#viernes">Viernes Cultural</a></li>
+        <li><a class="white-text"href="#grupos">Grupos</a></li>
+        <li><a class="white-text"href="#semestres">Semestres</a></li>
+        <li><a class="white-text"href="#maestros">Maestros</a></li>
+        <li><a class="white-text"href="#estudiantes">Alumnos</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large pink-text text-pink"><i class="fa fa-bars" aria-hidden="true"></i></a>
+  </nav>
+
+
+</header>
+<main>
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="row">
+          <div class="card">
+            <form class="col s12 ">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fa fa-search prefix" aria-hidden="true"></i>
+                  <input id="icon_prefix"  ng-model="query" type="text" class="validate ">
+                  <label for="icon_prefix">Nombre del evento</label>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col l12 m12">
+        <ul class="collection"  >
+         <li class="collection-item avatar" ng-repeat="e in eventos | filter:query">
+           <span class="title">{{e.title}}</span>
+           <p>{{e.description}}<br>
+              {{e.dateStart | date : 'MMMM dd, yyyy' | uppercase}}
+           </p>
+           <a class="secondary-content"><i class="fa fa-times" aria-hidden="true"></i></a>
+         </li>
+       </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="large fa fa-plus"></i>
+    </a>
+    <ul>
+      <li>
+        <a ng-click="abrirModalEventos()" class="btn-floating green"><i class="fa fa-calendar" aria-hidden="true"></i>
+        </a>
+      </li>
+
+
+    </ul>
+  </div>
+  </main>
+
+  <div id="modal-evento" class="modal modal-fixed-footer ">
+    <div class="modal-content " ng-form="formularioEvento">
+      <div class="row">
+        <div class="col l12">
+          <div class="section">
+            <h5>{{evento.id ? 'Editar evento':'Crear evento'}}</h5>
+          </div>
+          <div class="divider">
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col l6" >
+          <div input-field>
+            <input type="text" name="titulo" length="150" class="validate" ng-model="evento.title" required >
+            <label  for="titulo" data-error="Debe ingresar un titulo" >Titulo</label>
+          </div>
+
+          <div input-field>
+            <textarea id="textarea1" ng-model="evento.description" class="materialize-textarea"></textarea>
+            <label for="textarea1">Descripcion</label>
+          </div>
+
+          <div input-field>
+            <input input-date
+                type="text"
+                name="created"
+                id="inputCreated"
+                ng-model="evento.date"
+                container="body"
+                format="yyyy-mm-dd"
+                months-full="{{ month }}"
+                months-short="{{ monthShort }}"
+                weekdays-full="{{ weekdaysFull }}"
+                weekdays-short="{{ weekdaysShort }}"
+                weekdays-letter="{{ weekdaysLetter }}"
+                disable="disable"
+                min="{{ minDate }}"
+                max="{{ maxDate }}"
+                today="today"
+                clear="clear"
+                close="close"
+                select-years="15"
+                on-start="onStart()"
+                on-render="onRender()"
+                on-open="onOpen()"
+                on-close="onClose()"
+                on-set="onSet()"
+                on-stop="onStop()" />
+            <label for="inputCreated">Fecha</label>
+          </div>
+
+
+
+        </div>
+        <div class="col l6">
+          <div class="input-field col l12">
+            <input name="fechaInicio" placeholder="Hora de inicio" id="timepicker_default1" ng-model="evento.horaInicio"  class="timepicker" type="time">
+
+          </div>
+
+          <div class="input-field col l12">
+            <input name="fechaFinal" placeholder="Hora de termino" id="timepicker_default2" ng-model="evento.horaTermino"  class="timepicker" type="time">
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer center-align">
+
+        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+          <i class="fa fa-close rigth" aria-hidden="true"></i>
+        </button>
+
+
+        <button ng-disabled="formularioEvento.$invalid" ng-click="crearEvento(evento)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div id="modal-asistencias" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <div class="row ">
+        <div class="col l12">
+          <h5>Asistencias</h5>
+          <div class="divider" ></div>
+
+          <div class="row ">
+            <div class="col l6 offset-l3">
+              <div input-field>
+                <input input-date
+                    type="text"
+                    name="created"
+                    id="inputCreated"
+                    ng-model="asistencias.fecha"
+                    container="body"
+                    format="yyyy-mm-dd"
+                    months-full="{{ month }}"
+                    months-short="{{ monthShort }}"
+                    weekdays-full="{{ weekdaysFull }}"
+                    weekdays-short="{{ weekdaysShort }}"
+                    weekdays-letter="{{ weekdaysLetter }}"
+                    disable="disable"
+                    min="{{ minDate }}"
+                    max="{{ maxDate }}"
+                    today="today"
+                    clear="clear"
+                    close="close"
+                    select-years="15"
+                    on-start="onStart()"
+                    on-render="onRender()"
+                    on-open="onOpen()"
+                    on-close="onClose()"
+                    on-set="onSet()"
+                    on-stop="onStop()" />
+                <label for="inputCreated">Fecha</label>
+              </div>
+
+              <input type="checkbox" id="test5" ng-model="asistencias.type"/>
+              <label for="test5">Asistencia</label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="row" >
+        <div class="col l12">
+
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer center-align">
+
+      <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+        <i class="fa fa-close rigth" aria-hidden="true"></i>
+      </button>
+
+      <button  class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAsistencias(asistencia)" type="submit" name="action">Agregar asistencias
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+
+      <button  class="btn btn-small waves-effect waves-light pink" ng-click="eliminarAsistencias()" type="submit" name="action">Eliminar asistencias
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+
+
+
+      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
+    </div>
+  </div>
+
+
+  <footer class="page-footer pink">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <!-- <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2016 ULSACOMMUNITY TEAM
+        <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
+    </div>
+  </footer>

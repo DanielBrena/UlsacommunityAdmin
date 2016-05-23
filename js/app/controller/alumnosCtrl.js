@@ -47,7 +47,7 @@
         $scope.monthShort = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
         $scope.weekdaysFull = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
         $scope.weekdaysLetter = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
-        $scope.disable = [false, 1, 7];
+        //$scope.disable = [false, 1, 7];
         $scope.today = 'Hoy';
         $scope.clear = 'Limpiar';
         $scope.close = 'Cerrar';

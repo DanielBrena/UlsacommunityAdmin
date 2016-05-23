@@ -32,7 +32,16 @@
           $scope.estudiantes = null;
         }
       }
+      $(".button-collapse").sideNav();
+      $('.button-collapse').sideNav('hide');
+
+      $('.button-collapse').sideNav({
+        closeOnClick: true
+      })
+
     });
+
+
 
 
 

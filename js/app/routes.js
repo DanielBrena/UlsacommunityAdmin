@@ -60,6 +60,13 @@ angular.module('ulsa.routes', ['ulsa.levels'])
       data: {
         access: AccessLevels.admin
       }
+    }).state('eventos',{
+      url: '/eventos',
+      templateUrl: 'templates/eventos.html',
+      controller: 'EventosCtrl',
+      data: {
+        access: AccessLevels.admin
+      }
     });
      $urlRouterProvider.otherwise('/');
   });
