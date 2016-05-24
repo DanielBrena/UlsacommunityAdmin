@@ -8,12 +8,16 @@
       $('#timepicker_default1').pickatime({
       default: 'now',
       donetext: 'Guardar',
-      autoclose: true
+      autoclose: true,
+
+      twelvehour: false
       });
       $('#timepicker_default2').pickatime({
       default: 'now',
       donetext: 'Guardar',
-      autoclose: true
+      autoclose: true,
+
+      twelvehour: false
       });
 
       $scope.abrirModalEventos = function(g){
@@ -37,7 +41,7 @@
         $scope.monthShort = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
         $scope.weekdaysFull = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
         $scope.weekdaysLetter = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
-        $scope.disable = [false, 1, 7];
+        //$scope.disable = [false, 1, 7];
         $scope.today = 'Hoy';
         $scope.clear = 'Limpiar';
         $scope.close = 'Cerrar';
@@ -49,7 +53,35 @@
       obtenerEventos();
 
       $scope.crearEvento = function(e){
-        console.log(e);
+        var horaInicio = new Date(e.date);
+        horaInicio.setHours(e.horaInicio.getHours());
+        horaInicio.setMinutes(e.horaInicio.getMinutes());
+
+        var horaTermino = new Date(e.date);
+        horaTermino.setHours(e.horaTermino.getHours());
+        horaTermino.setMinutes(e.horaTermino.getMinutes());
+        e.dateStart = horaInicio;
+        e.dateEnd = horaTermino;
+
+        var data = new FormData();
+        data.append('file',$scope.file[0]);
+        data.append('data',JSON.stringify(e));
+        console.log(data);
+
+        EventosFactory.setEvento(data).success(function(data){
+          Notification.success("Se agrego un evento");
+          obtenerEventos();
+        }).error(function(e){
+          Notification.error("No se pudo agregar el evento");
+        })
+
+      }
+
+      $scope.seleccionarArchivo = function(e){
+        $scope.$apply(function($scope) {
+         $scope.file = e.files;
+       });
+        console.log($scope.file);
       }
 
 

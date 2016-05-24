@@ -74,6 +74,12 @@
         asistencia.asistenciastring = $scope.asistencias.type2;
         asistencia.fecha = $scope.asistencias.fecha;
         console.log(asistencia);
+        AlumnosFactory.sendAsistencia(asistencia).success(function(data){
+          console.log(asistencia);
+          Notification.success("Asistencia agregada");
+        }).error(function(e){
+          Notification.error("No se pudo agregar la asistencia.")
+        });
 
       }
 

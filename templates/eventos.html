@@ -81,8 +81,8 @@
   </div>
   </main>
 
-  <div id="modal-evento" class="modal modal-fixed-footer ">
-    <div class="modal-content " ng-form="formularioEvento">
+  <div id="modal-evento" class="modal modal-fixed-footer " ng-form="formularioEvento">
+    <div class="modal-content " >
       <div class="row">
         <div class="col l12">
           <div class="section">
@@ -97,19 +97,32 @@
 
         <div class="col l6" >
           <div input-field>
-            <input type="text" name="titulo" length="150" class="validate" ng-model="evento.title" required >
+            <input type="text" name="titulo" length="150" class="validate" ng-model="evento.title"  >
             <label  for="titulo" data-error="Debe ingresar un titulo" >Titulo</label>
           </div>
 
           <div input-field>
-            <textarea id="textarea1" ng-model="evento.description" class="materialize-textarea"></textarea>
+            <textarea id="textarea1" ng-model="evento.description" rows="2" class="materialize-textarea"></textarea>
             <label for="textarea1">Descripcion</label>
           </div>
 
-          <div input-field>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Archivo</span>
+              <input type="file" ng-model="evento.file" name="file" onchange="angular.element(this).scope().seleccionarArchivo(this)">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col l6">
+          <div class="input-field col l12">
             <input input-date
                 type="text"
-                name="created"
+                name="fecha"
                 id="inputCreated"
                 ng-model="evento.date"
                 container="body"
@@ -132,13 +145,10 @@
                 on-close="onClose()"
                 on-set="onSet()"
                 on-stop="onStop()" />
-            <label for="inputCreated">Fecha</label>
+            <label for="fecha">Fecha</label>
           </div>
 
 
-
-        </div>
-        <div class="col l6">
           <div class="input-field col l12">
             <input name="fechaInicio" placeholder="Hora de inicio" id="timepicker_default1" ng-model="evento.horaInicio"  class="timepicker" type="time">
 
@@ -154,6 +164,7 @@
 
 
       </div>
+    </div>
       <div class="modal-footer center-align">
 
         <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
@@ -161,90 +172,13 @@
         </button>
 
 
-        <button ng-disabled="formularioEvento.$invalid" ng-click="crearEvento(evento)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+        <button  ng-click="crearEvento(evento)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
           <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         </button>
 
       </div>
-    </div>
   </div>
 
-
-  <div id="modal-asistencias" class="modal modal-fixed-footer ">
-    <div class="modal-content">
-      <div class="row ">
-        <div class="col l12">
-          <h5>Asistencias</h5>
-          <div class="divider" ></div>
-
-          <div class="row ">
-            <div class="col l6 offset-l3">
-              <div input-field>
-                <input input-date
-                    type="text"
-                    name="created"
-                    id="inputCreated"
-                    ng-model="asistencias.fecha"
-                    container="body"
-                    format="yyyy-mm-dd"
-                    months-full="{{ month }}"
-                    months-short="{{ monthShort }}"
-                    weekdays-full="{{ weekdaysFull }}"
-                    weekdays-short="{{ weekdaysShort }}"
-                    weekdays-letter="{{ weekdaysLetter }}"
-                    disable="disable"
-                    min="{{ minDate }}"
-                    max="{{ maxDate }}"
-                    today="today"
-                    clear="clear"
-                    close="close"
-                    select-years="15"
-                    on-start="onStart()"
-                    on-render="onRender()"
-                    on-open="onOpen()"
-                    on-close="onClose()"
-                    on-set="onSet()"
-                    on-stop="onStop()" />
-                <label for="inputCreated">Fecha</label>
-              </div>
-
-              <input type="checkbox" id="test5" ng-model="asistencias.type"/>
-              <label for="test5">Asistencia</label>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="row" >
-        <div class="col l12">
-
-        </div>
-      </div>
-
-    </div>
-    <div class="modal-footer center-align">
-
-      <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
-        <i class="fa fa-close rigth" aria-hidden="true"></i>
-      </button>
-
-      <button  class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAsistencias(asistencia)" type="submit" name="action">Agregar asistencias
-        <i class="fa fa-check" aria-hidden="true"></i>
-      </button>
-
-      <button  class="btn btn-small waves-effect waves-light pink" ng-click="eliminarAsistencias()" type="submit" name="action">Eliminar asistencias
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      </button>
-
-
-
-      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
-    </div>
-  </div>
 
 
   <footer class="page-footer pink">
