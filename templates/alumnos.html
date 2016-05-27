@@ -23,7 +23,9 @@
 <main>
 
   <div class="parallax-container">
-    <div class="parallax"><img src="img/portada1.png"></div>
+
+    <div  class="parallax"><img ng-src="{{rutaImagen}}"></div>
+
   </div>
 
 
@@ -73,7 +75,7 @@
                 <li><a ng-click="agregarAsistenciaModal(a)">Agregar Asistencia</a></li>
                 <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
                 <li class="divider"></li>
-                <li><a ng-click="removerAlumno(a)">Remover</a></li>
+                <!-- <li><a ng-click="removerAlumno(a)">Remover</a></li> -->
               </ul>
             </div>
           </div>

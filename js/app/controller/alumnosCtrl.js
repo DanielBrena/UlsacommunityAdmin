@@ -1,8 +1,9 @@
 (function() {
 
     'use strict';
-    app.controller('AlumnosCtrl', function($scope,$filter, $state,$stateParams,AlumnosFactory,Notification){
+    app.controller('AlumnosCtrl', function($scope,CONFIG,$filter, $state,$stateParams,AlumnosFactory,Notification,GruposFactory){
       $scope.id = $stateParams.id;
+
       $scope.alphabetcolors = ["#1de9b6","#00b0ff","#00e5ff","#00e676","#76ff03","#c6ff00","#f9a825","#ff8f00","#ef6c00"];
       $scope.alumnosAgregados = [];
       $scope.grupo = {};
@@ -18,6 +19,15 @@
             console.log(data);
             $scope.grupo = data;
             $scope.titulo = data.name;
+            if($scope.grupo.image){
+              $scope.rutaImagen = CONFIG.APIURL + "images/grupos/" +$scope.grupo.image;
+
+            }else{
+
+              $scope.rutaImagen = CONFIG.APIURL + "images/grupos/portada_grupo.png";
+
+            }
+            console.log($scope.rutaImagen);
             //$scope.alumnos = data.students;
           }).error(function(e){
 
@@ -96,8 +106,16 @@
 
       $scope.agregarImagen = function(imagen){
         var grupo = {};
-        grupo.id = $scope.id;
+        grupo.grupo = $scope.id;
         grupo.file = imagen;
+        GruposFactory.uploadImagen(grupo).success(function(data){
+          Notification.success("La imagen se ha subido satisfactoriamente");
+          getAlumnos();
+        }).error(function(e){
+
+        })
+
+
 
         console.log(grupo);
       }

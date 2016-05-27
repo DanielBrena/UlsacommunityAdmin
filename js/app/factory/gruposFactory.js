@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    app.factory('GruposFactory', function(CONFIG,$http){
+    app.factory('GruposFactory', function(CONFIG,$http,Upload){
       return{
         getAllGrupos:function(){
           var resultado = $http.get(CONFIG.APIURL + "statistics/allGroups");
