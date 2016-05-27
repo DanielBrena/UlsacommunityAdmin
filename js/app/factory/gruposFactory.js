@@ -14,6 +14,13 @@
           var resultado = $http.post(CONFIG.APIURL + "groups/",grupo);
           return resultado;
         },
+        uploadImagen:function(grupo){
+          var resultado = Upload.upload({
+             url: CONFIG.APIURL + "groups/uploadImage",
+             data: grupo
+           });
+          return resultado
+        },
         deleteGrupo:function(id){
           var resultado = $http.delete(CONFIG.APIURL + "groups/"+id);
           return resultado;

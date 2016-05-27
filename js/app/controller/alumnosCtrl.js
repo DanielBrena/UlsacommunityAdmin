@@ -77,7 +77,14 @@
         asistencia.asistenciabool = $scope.asistencias.type;
         asistencia.asistenciastring = $scope.asistencias.type2;
         asistencia.fecha = $scope.asistencias.fecha;
-        console.log(asistencia);
+
+
+         console.log(new Date($scope.asistencias.fecha));
+        //asistencia.fecha = new Date($scope.asistencias.fecha).setHours(5);
+         //console.log(asistencia);
+
+         asistencia.fecha = $filter('date')(asistencia.fecha,'yyyy-MM-dd');
+         console.log(asistencia);
         AlumnosFactory.sendAsistencia(asistencia).success(function(data){
           console.log(asistencia);
           Notification.success("Asistencia agregada");
@@ -85,6 +92,14 @@
           Notification.error("No se pudo agregar la asistencia.")
         });
 
+      }
+
+      $scope.agregarImagen = function(imagen){
+        var grupo = {};
+        grupo.id = $scope.id;
+        grupo.file = imagen;
+
+        console.log(grupo);
       }
 
       $scope.agregarAsistencias = function(){

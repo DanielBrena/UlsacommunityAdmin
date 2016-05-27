@@ -13,16 +13,6 @@
              data: evento
            });
           return resultado
-          // console.log(evento);
-          // var resultado = $http.post(CONFIG.APIURL + "events",evento,{
-          //   transformRequest : angular.identity,
-          //   withCredentials : false,
-          //   headers : {
-          //     'Content-Type' : undefined
-          //   },
-          //
-          // });
-          // return resultado;
         }
       }
 
