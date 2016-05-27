@@ -9,12 +9,13 @@
       function obtenerCarreras(){
         CarrerasFactory.getCarreras().success(function(data){
           $scope.carreras = data;
+          console.log(data);
         }).error(function(e){
-
         });
       }
 
       $scope.enviarFormulario = function(e){
+        console.log(e);
         $scope.carrera = e;
       }
 
