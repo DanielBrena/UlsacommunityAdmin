@@ -1,0 +1,128 @@
+<header>
+  <nav class="white pink-text ">
+    <ul class="right hide-on-med-and-down">
+      <li><a class="modal-trigger pink-text" href="#signup">Cerrar sesión</a></li>
+    </ul>
+
+      <a href="#" class="brand-logo center pink-text">ULSACOMMUNTY</a>
+
+
+    <ul id="slide-out" class="side-nav pink text-gray">
+      <li><a class="white-text"href="#principal">Principal</a></li>
+      <li><a class="white-text"href="#viernes">Viernes Cultural</a></li>
+      <li><a class="white-text"href="#grupos">Grupos</a></li>
+      <li><a class="white-text"href="#semestres">Semestres</a></li>
+      <li><a class="white-text"href="#maestros">Maestros</a></li>
+      <li><a class="white-text"href="#alumnos">Alumnos</a></li>
+    </ul>
+
+    <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large pink-text text-pink"><i class="fa fa-bars" aria-hidden="true"></i></a>
+  </nav>
+
+
+</header>
+<main>
+
+    <div class="container">
+      <div class="row">
+        <div class="col l5 m5 s12">
+
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fa fa-search prefix" aria-hidden="true"></i>
+                  <input id="icon_prefix" ng-model="buscarCarrera" type="text" class="validate ">
+                  <label for="icon_prefix">Buscar carrera</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="collection" >
+              <div  ng-repeat="c in carreras  | filter:buscarCarrera track by $index" class="">
+                <a ng-click="enviarFormulario(c)"  class="collection-item  pink-text">{{c.name}}<span  class="badge">{{c.students.length}}</span></a>
+
+              </div>
+           </div>
+
+          </div>
+        </div>
+
+
+        <div class="col l7 m7 s12">
+          <div class="card" ng-form="formularioCarrera">
+            <div class="card-content">
+
+              <div input-field>
+                  <input type="text" name="nombre" length="150" class="validate" required ng-model="carrera.name">
+                  <label  for="nombre" data-error="Debe ingresar un nombre" >Nombre de la carrera</label>
+              </div>
+
+              <div input-field>
+                <textarea id="textarea1" ng-model="carrera.description" rows="2" class="materialize-textarea"></textarea>
+                <label for="textarea1">Descripcion</label>
+              </div>
+            </div>
+            <div class="card-action ">
+              <button ng-hide="carrera.id" ng-disabled="formularioCarrera.$invalid" ng-click="crearCarrera(carrera)"  class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
+
+              <button ng-disabled="formularioCarrera.$invalid" ng-click="actualizarCarrera(carrera)" ng-show="carrera.id" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
+
+              <button ng-show="carrera.id" href="#modalEliminarCarrera" ng-click="mostrarModalEliminar()" class="btn waves-effect waves-light red accent-3 semestre-btn-modal" type="submit" name="action">Eliminar
+                <i class="fa fa-trash rigth"  aria-hidden="true"></i>
+              </button>
+
+              <button ng-show="carrera.id"  ng-click="carrera = {}" class="btn btn-small waves-effect waves-light purple accent-3" type="submit" name="action">
+                <i class="fa fa-close rigth" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="">
+              <div id="modalEliminarCarrera" class="modal modal-fixed-footer pink">
+                <div class="modal-content white-text">
+                  <h4>¿Desea eliminar por completo la carrera?</h4>
+                  <p>Al eliminar la carrera, los alumnos asociados perderan la referencia del grupo.</p>
+                </div>
+                <div class="modal-footer center-align">
+                  <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">
+                    <i class="fa fa-close rigth" aria-hidden="true"></i>
+                  </button>
+                  <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="eliminarCarrera()" type="submit" name="action">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
+
+</main>
+
+
+<footer class="page-footer pink">
+  <div class="container">
+    <div class="row">
+      <div class="col l12 s12">
+      </div>
+
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2016 ULSACOMMUNITY TEAM
+    </div>
+  </div>
+</footer>

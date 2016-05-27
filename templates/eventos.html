@@ -107,13 +107,14 @@
           </div>
 
           <div class="file-field input-field">
-            <div class="btn">
+            <div class="btn" ngf-select ng-model="evento.file" name="file" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-width="500"
+    ngf-resize="{width: 500, height: 500}">
               <span>Archivo</span>
-              <input type="file" ng-model="evento.file" name="file" onchange="angular.element(this).scope().seleccionarArchivo(this)">
+
             </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
-            </div>
+
+            <img  style="margin-left:10px" ng-if="evento.file" ngf-thumbnail="evento.file || '/thumb.jpg'">
           </div>
 
 

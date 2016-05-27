@@ -53,6 +53,20 @@ angular.module('ulsa.routes', ['ulsa.levels'])
       data: {
         access: AccessLevels.admin
       }
+    }).state('carreras',{
+      url: '/carreras',
+      templateUrl: 'templates/carreras.html',
+      controller: 'CarrerasCtrl',
+      data: {
+        access: AccessLevels.admin
+      }
+    }).state('actividades',{
+      url: '/actividades',
+      templateUrl: 'templates/actividades.html',
+      controller: 'ActividadesCtrl',
+      data: {
+        access: AccessLevels.admin
+      }
     }).state('maestros',{
       url: '/maestros',
       templateUrl: 'templates/maestros.html',

@@ -63,17 +63,21 @@
         e.dateStart = horaInicio;
         e.dateEnd = horaTermino;
 
-        var data = new FormData();
-        data.append('file',$scope.file[0]);
-        data.append('data',JSON.stringify(e));
-        console.log(data);
+        console.log(e);
 
-        EventosFactory.setEvento(data).success(function(data){
+
+        // var data = new FormData();
+        // data.append('file',$scope.file[0]);
+        // data.append('data',angular.toJson(e));
+        // console.log(data);
+        // console.log(e);
+        //
+        EventosFactory.setEvento(e).success(function(d){
           Notification.success("Se agrego un evento");
           obtenerEventos();
         }).error(function(e){
           Notification.error("No se pudo agregar el evento");
-        })
+        });
 
       }
 

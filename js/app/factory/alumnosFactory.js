@@ -38,6 +38,10 @@
           var resultado = $http.post(CONFIG.APIURL + "students",alumno);
           return resultado;
         },
+        updateAlumno:function(alumno){
+          var resultado = $http.put(CONFIG.APIURL + "students/"+alumno.id,alumno);
+          return resultado;
+        },
         removeAlumno:function(alumno){
           var resultado = $http.post(CONFIG.APIURL + "groups/removeStudent",alumno);
           return resultado;

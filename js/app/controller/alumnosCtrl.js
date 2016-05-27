@@ -9,6 +9,7 @@
       $scope.asistencias = {};
       $('.button-collapse').sideNav('hide');
       $(".button-collapse").sideNav();
+      $('.parallax').parallax();
 
 
       function getAlumnos(){
@@ -36,6 +37,9 @@
         $('#modal-alumnos').openModal();
       }
 
+      $scope.abrirModalImagen = function(){
+        $('#modal-imagen').openModal();
+      }
       $scope.abrirModalAsistencias = function(){
         $scope.alumno = null;
         $("#modal-asistencias").openModal();

@@ -74,3 +74,7 @@ body {
 /**
 waves
 */
+
+.parallax-container {
+      height: 250px;
+    }

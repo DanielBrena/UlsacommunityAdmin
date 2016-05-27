@@ -1,12 +1,28 @@
 (function() {
 
     'use strict';
-    app.controller('EstudiantesCtrl', function($scope, $state,Notification,AlumnosFactory){
+    app.controller('EstudiantesCtrl', function($scope, $state,Notification,AlumnosFactory,CarrerasFactory){
       $scope.alumno = {};
 
-      $scope.abrirModalGrupo = function(g){
+      $scope.abrirModalAlumno = function(e){
         $('#modal-alumno').openModal();
+        $scope.alumno = e;
 
+        cargarCarreras()
+      }
+
+      $scope.abrirModalGrupos = function(grupos){
+          $('#modal-grupos').openModal();
+          $scope.grupos = grupos;
+      }
+
+      function cargarCarreras(){
+        CarrerasFactory.getCarreras().success(function(data){
+          console.log(data);
+          $scope.carreras = data;
+        }).error(function(e){
+          console.log(e);
+        });
       }
 
       $scope.crearEstudiante = function(e){
@@ -18,6 +34,18 @@
           Notification.error("Error, alumno no creado");
         });
       }
+
+
+      $scope.editarEstudiante = function(e){
+        console.log(e);
+        AlumnosFactory.updateAlumno(e).success(function(data){
+          Notification.success("Alumno actualizado");
+        }).error(function(e){
+          Notification.error("No se pudo actualizar el alumno");
+        });
+      }
+
+
 
       $scope.searchAlumno = function(query){
         if(query != ''){

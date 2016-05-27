@@ -22,6 +22,10 @@
 </header>
 <main>
 
+  <div class="parallax-container">
+    <div class="parallax"><img src="img/portada1.png"></div>
+  </div>
+
 
   <div class="">
 
@@ -161,6 +165,11 @@
     </a>
     <ul>
       <li>
+        <a ng-click="abrirModalImagen()" class="btn-floating green"><i class="fa fa-image" aria-hidden="true"></i>
+        </a>
+      </li>
+
+      <li>
         <a ng-click="abrirModalAlumnos()" class="btn-floating green"><i class="fa fa-user" aria-hidden="true"></i>
         </a>
       </li>
@@ -234,10 +243,50 @@
       <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarAlumnosGrupo()" type="submit" name="action">Agregar al grupo
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
+    </div>
+  </div>
 
+  <div id="modal-imagen" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col l12">
+          <div class="section">
+            <h5>Agregar imagen</h5>
+          </div>
+          <div class="divider">
 
+          </div>
+        </div>
+      </div>
 
-      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
+      <div class="row" >
+        <div class="col l12">
+          <div class="file-field input-field">
+            <div class="btn" ngf-select ng-model="evento.file" name="file" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-width="500"
+    ngf-resize="{width: 500, height: 500}">
+              <span>Archivo</span>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row align-center">
+        <img  style="margin-left:10px" ng-if="evento.file" ngf-thumbnail="evento.file || '/thumb.jpg'">
+
+      </div>
+
+    </div>
+    <div class="modal-footer center-align">
+
+      <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+        <i class="fa fa-close rigth" aria-hidden="true"></i>
+      </button>
+
+      <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="agregarImagen()" type="submit" name="action">Agregar imagen
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 
