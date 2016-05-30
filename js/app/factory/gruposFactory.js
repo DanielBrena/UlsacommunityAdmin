@@ -16,7 +16,7 @@
 
         },
         updateGrupo:function(grupo){
-          var resultado = $http.put(CONFIG.APIURL + "groups/" +grupo._id,grupo);
+          var resultado = $http.put(CONFIG.APIURL + "groups/" +grupo.id,grupo);
           return resultado;
         },
         createGrupo:function(grupo){

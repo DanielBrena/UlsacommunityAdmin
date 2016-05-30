@@ -69,17 +69,21 @@
               </div>
               <div class="col l2" dropdown data-hover="false" data-activates='dropdown-{{a.id}}'>
                 <i class="fa fa-ellipsis-v  right button-options" ></i></span>
-                <ul id='dropdown-{{a.id}}' class='dropdown-content'>
-                  <li><a href="#grupos/2123">Información</a></li>
-                  <li><a href="#!">Estadisticas</a></li>
-                  <li><a ng-click="agregarAsistenciaModal(a)">Agregar Asistencia</a></li>
-                  <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
-                  <li class="divider"></li>
-                  <li><a ng-click="removerAlumno(a)">Remover</a></li>
-                </ul>
+
               </div>
             </li>
+            <ul id='dropdown-{{a.id}}' class='dropdown-content'>
+              <li><a href="#grupos/2123">Información</a></li>
+              <li><a href="#!">Estadisticas</a></li>
+              <li><a ng-click="agregarAsistenciaModal(a)">Agregar Asistencia</a></li>
+              <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
+              <li class="divider"></li>
+              <li><a ng-click="removerAlumno(a)">Remover</a></li>
+            </ul>
           </ul>
+
+
+
         </div>
 
 
