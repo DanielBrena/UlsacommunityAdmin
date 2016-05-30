@@ -3,12 +3,41 @@
     'use strict';
     app.controller('EstudiantesCtrl', function($scope, $state,Notification,AlumnosFactory,CarrerasFactory){
       $scope.alumno = {};
+      $scope.usuario = {};
+
 
       $scope.abrirModalAlumno = function(e){
         $('#modal-alumno').openModal();
         $scope.alumno = e;
 
         cargarCarreras()
+      }
+
+      $scope.abrirModalCuenta = function(u){
+        $('#modal-cuenta').openModal();
+        console.log('abrir');
+        $scope.alumno = u;
+        console.log(u);
+        console.log(u.user.id);
+        if(u.user.id){
+          $scope.usuario = u.user;
+        }
+      //  $scope.usuario = u;
+      }
+
+      $scope.actualizarUsuario = function(u){
+        console.log(u);
+      }
+      $scope.crearUsuario = function(u){
+        u.student = $scope.alumno.id;
+        AlumnosFactory.createUserAlumno(u).success(function(data){
+          console.log(data);
+          Notification.success('Usuario creado');
+          $scope.usuario = {};
+          $('#modal-cuenta').closeModal();
+        }).error(function(data){
+          Notification.error('Usuario no creado');
+        })
       }
 
       $scope.abrirModalGrupos = function(grupos){

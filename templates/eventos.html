@@ -53,7 +53,7 @@
            <p>{{e.description}}<br>
               {{e.dateStart | date : 'MMMM dd, yyyy' | uppercase}}
            </p>
-           <a class="secondary-content"><i class="fa fa-times" aria-hidden="true"></i></a>
+           <a class="secondary-content"><i class="fa fa-times" ng-click="eliminarEvento(e)" aria-hidden="true"></i></a>
          </li>
        </ul>
       </div>
@@ -84,9 +84,9 @@
   <div id="modal-evento" class="modal modal-fixed-footer " ng-form="formularioEvento">
     <div class="modal-content " >
       <div class="row">
-        <div class="col l12">
+        <div class="col l12 m12">
           <div class="section">
-            <h5>{{evento.id ? 'Editar evento':'Crear evento'}}</h5>
+            <h5>{{evento.id ? 'Editar evento':'Crear evento o aviso'}}</h5>
           </div>
           <div class="divider">
 
@@ -94,8 +94,16 @@
         </div>
       </div>
       <div class="row">
+        <div class="col l12 m12 s12 center-align" ng-init="evento.type='evento'" >
+          <input name="type"  ng-model="evento.type" type="radio"  ng-change="generarHora(evento)"  value="evento" id="for-evento" />
+          <label for="for-evento">Evento</label>
+          <input name="type" type="radio" ng-model="evento.type" ng-change="generarHora(evento)" value="aviso"  id="for-aviso" />
+          <label for="for-aviso">Aviso</label>
 
-        <div class="col l6" >
+
+        </div>
+
+        <div class="col l6 m6 s12" >
           <div input-field>
             <input type="text" name="titulo" length="150" class="validate" ng-model="evento.title"  >
             <label  for="titulo" data-error="Debe ingresar un titulo" >Titulo</label>
@@ -119,8 +127,8 @@
 
 
         </div>
-        <div class="col l6">
-          <div class="input-field col l12">
+        <div class="col l6 m6 s12" >
+          <div class="input-field col l12" ng-show="evento.type=='evento'">
             <input input-date
                 type="text"
                 name="fecha"
@@ -150,14 +158,33 @@
           </div>
 
 
-          <div class="input-field col l12">
-            <input name="fechaInicio" placeholder="Hora de inicio" id="timepicker_default1" ng-model="evento.horaInicio"  class="timepicker" type="time">
+          <div class="input-field col l12" ng-show="evento.type=='evento'">
+            <input name="fechaInicio"    placeholder="Hora de inicio" format="" required id="timepicker_default1" ng-model="evento.horaInicio"  class="timepicker" type="time">
 
           </div>
 
-          <div class="input-field col l12">
-            <input name="fechaFinal" placeholder="Hora de termino" id="timepicker_default2" ng-model="evento.horaTermino"  class="timepicker" type="time">
+          <div class="input-field col l12" ng-show="evento.type=='evento'">
+            <input name="fechaFinal" placeholder="Hora de termino" required id="timepicker_default2" ng-model="evento.horaTermino"  class="timepicker" type="time">
           </div>
+
+
+          <div class="input-field col l12" ng-init="evento.diffusion='todos'">
+            <input name="group1" check ng-model="evento.diffusion" type="radio" ng-change="eliminarGrupo(evento)" value="todos" id="test1" />
+            <label for="test1">Todos</label>
+            <input name="group1" type="radio" ng-model="evento.diffusion" ng-change="eliminarGrupo(evento)"value="maestros"  id="test2" />
+            <label for="test2">Maestros</label>
+            <input name="group1" type="radio" ng-model="evento.diffusion"  value="grupos" id="test3" />
+            <label for="test3">Grupo</label>
+          </div>
+          <br>
+
+          <div class="input-field col l12" ng-show="evento.diffusion == 'grupos'">
+            <select  class="browser-default" required ng-model="evento.group"  ng-options="grupo.id as grupo.name for grupo in grupos" >
+              <option value="" disabled selected>Selecciona un Grupo</option>
+
+            </select>
+          </div>
+
 
 
         </div>
@@ -173,7 +200,7 @@
         </button>
 
 
-        <button  ng-click="crearEvento(evento)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+        <button  ng-click="crearEvento(evento)"  class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
           <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         </button>
 

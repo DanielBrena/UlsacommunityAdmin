@@ -136,7 +136,7 @@
                     <div class="col l12">
                       <ul class="collection with-header">
                         <li class="collection-header"><h5>Asistencias</h5></li>
-                        <li class="collection-item " ng-class="{pink:a.type2 =='viernes cultural', 'lighten-5':a.type2 =='viernes cultural'}" ng-repeat="a in asistenciasAlumno.assistances  track by a.id"><div><strong>{{a.type2 =='viernes cultural' ? 'V: ' :'A: '}}</strong> {{a.date | date : 'dd-MMMM-yyyy'}}<p class="secondary-content"><input  type="checkbox" id="checkbox-{{a.id}}" name="checkbox-{{a.id}}" ng-change="cambiarAsistencia(a)" ng-model="a.type" id="test5"/>
+                        <li class="collection-item " ng-class="{pink:a.type2 =='viernes cultural', 'lighten-5':a.type2 =='viernes cultural'}" ng-repeat="a in asistenciasAlumno  track by a.id"><div><strong>{{a.type2 =='viernes cultural' ? 'V: ' :'A: '}}</strong> {{a.date | date : 'dd-MMMM-yyyy'}}<p class="secondary-content"><input  type="checkbox" id="checkbox-{{a.id}}" name="checkbox-{{a.id}}" ng-change="cambiarAsistencia(a)" ng-model="a.type" id="test5"/>
                         <label for="checkbox-{{a.id}}">{{a.type ? 'Asistencia' : 'Inasistencia'}}</label></p></div></li>
                       </ul>
                     </div>

@@ -13,6 +13,10 @@
              data: evento
            });
           return resultado
+        },
+        deleteEvento:function(id){
+          var resultado = $http.delete(CONFIG.APIURL + "events/"+id);
+          return resultado;
         }
       }
 

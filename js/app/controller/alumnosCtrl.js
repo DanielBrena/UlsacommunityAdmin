@@ -155,6 +155,8 @@
       $scope.obtenerAsistencias = function(a){
         AlumnosFactory.getAsistencias(a.id,$scope.grupo.id).success(function(data){
           console.log(data);
+          data = _.sortBy(data.assistances,'date');
+          console.log(data);
           $scope.asistenciasAlumno = data;
         }).error(function(e){
 

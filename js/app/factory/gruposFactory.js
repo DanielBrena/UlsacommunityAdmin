@@ -6,6 +6,11 @@
           var resultado = $http.get(CONFIG.APIURL + "statistics/allGroups");
           return resultado;
         },
+        getGruposActivos:function(){
+          var resultado = $http.get(CONFIG.APIURL + "groups/findGroupsActive");
+          return resultado;
+
+        },
         updateGrupo:function(grupo){
           var resultado = $http.put(CONFIG.APIURL + "groups/" +grupo._id,grupo);
           return resultado;

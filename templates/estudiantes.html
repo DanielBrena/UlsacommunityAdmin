@@ -1,4 +1,4 @@
-<header>
+-<header>
   <nav class="white pink-text ">
     <ul class="right hide-on-med-and-down">
       <li><a class="modal-trigger pink-text" href="#signup">Cerrar sesión</a></li>
@@ -50,7 +50,6 @@
               <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#f48fb1" data="{{e.name}}"></ng-letter-avatar>
 
             </div>
-            <!-- <span class="card-title">{{e.name.split(' ').length > 1 ? e.name.split(' ')[0] : e.name}}</span> -->
 
               </div>
 
@@ -63,18 +62,13 @@
               </div>
 
 
-          <!-- <div class="card-action">
-            <i class="fa fa-ellipsis-v right button-options" aria-hidden="true" dropdown data-hover="true" data-activates='dropdown-{{e.id}}'></i>
-            <p>
 
-            </p>
-          </div> -->
           <ul id='dropdown-{{e.id}}' class='dropdown-content'>
 
             <li ><a  ng-click="abrirModalGrupos(e.groups)">Grupos</a></li>
 
             <li><a href="#!">Estadisticas</a></li>
-            <li><a ng-click="abrirModalCuenta(m.user)" >Cuenta</a></li>
+            <li><a ng-click="abrirModalCuenta(e)">Cuenta</a></li>
             <li class="divider"></li>
             <li ><a  ng-click="abrirModalAlumno(e)">Editar</a></li>
             <li><a href="#!">Eliminar</a></li>
@@ -119,8 +113,11 @@
           <i class="fa fa-close rigth" aria-hidden="true"></i>
         </button>
 
-        <button ng-disabled="formularioUsuario.$invalid" ng-click="actualizarUsuario(usuario,password)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
-          <i class="material-icons right">send</i>
+        <button ng-if="usuario.id" ng-disabled="formularioUsuario.$invalid" ng-click="actualizarUsuario(usuario,password)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        </button>
+        <button ng-if="!usuario.id" ng-disabled="formularioUsuario.$invalid" ng-click="crearUsuario(usuario)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear usuario
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         </button>
 
 

@@ -38,6 +38,10 @@
           var resultado = $http.post(CONFIG.APIURL + "students",alumno);
           return resultado;
         },
+        createUserAlumno:function(user){
+          var resultado = $http.post(CONFIG.APIURL + "users/createStudent",user);
+          return resultado;
+        },
         updateAlumno:function(alumno){
           var resultado = $http.put(CONFIG.APIURL + "students/"+alumno.id,alumno);
           return resultado;
