@@ -62,8 +62,8 @@
               </div>
 
 
-              <div class="card-content">
-                <i class="fa fa-ellipsis-v  right button-options"  dropdown data-hover="true" data-activates='dropdown-{{a.id}}'></i></span>
+              <div class="card-content"  dropdown data-hover="false" data-activates='dropdown-{{a.id}}'>
+                <i class="fa fa-ellipsis-v  right button-options" ></i></span>
                 <p style="font-size:.7em">
                   {{a.name.split(' ').length > 1 ? a.name.split(' ')[0]: a.name | uppercase}}
                   {{a.lastname.split(' ').length > 1 ? a.lastname.split(' ')[0]: a.lastname | uppercase}}
