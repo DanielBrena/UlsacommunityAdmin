@@ -6,8 +6,8 @@
       $scope.ruta = CONFIG.APIURL;
       $scope.alphabetcolors = ["#ff1744","#f50057","#d500f9","#651fff","#3d5afe","#2979ff"];//,"#1de9b6","#00b0ff","#00e5ff","#00e676","#76ff03","#c6ff00","#f9a825","#ff8f00","#ef6c00"];
 
-      function getAllGrupos(){
-        GruposFactory.getAllGrupos().success(function(data){
+      function getGrupos(){
+        GruposFactory.getGruposActivos().success(function(data){
           console.log(data);
           $scope.grupos = data;
         }).error(function(e){
@@ -45,7 +45,7 @@
         console.log(g);
         GruposFactory.createGrupo(g).success(function(data){
           Notification.success("Grupo creado");
-          getAllGrupos();
+          getGrupos();
         }).error(function(e){
           Notification.error("Existe un error, el grupo no se creo");
         });
@@ -58,7 +58,7 @@
 
       $scope.eliminarGrupo = function(){
         GruposFactory.deleteGrupo($scope.grupo.id).success(function(data){
-          getAllGrupos();
+          getGrupos();
           $('#modal-grupo-eliminar').closeModal();
 
           Notification.success("Se elimino el grupo");
@@ -82,7 +82,7 @@
 
       }
 
-      getAllGrupos();
+      getGrupos();
 
         $(".button-collapse").sideNav();
          $('.button-collapse').sideNav('hide');

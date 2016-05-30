@@ -2,6 +2,10 @@
     'use strict';
     app.factory('GruposFactory', function(CONFIG,$http,Upload){
       return{
+        getGrupos:function(){
+          var resultado = $http.get(CONFIG.APIURL + "groups");
+          return resultado;
+        },
         getAllGrupos:function(){
           var resultado = $http.get(CONFIG.APIURL + "statistics/allGroups");
           return resultado;

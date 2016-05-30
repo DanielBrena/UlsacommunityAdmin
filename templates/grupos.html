@@ -49,15 +49,13 @@
 
 
 
-          <div class="card-action">
-            <i class="fa fa-ellipsis-v right button-options" aria-hidden="true" dropdown data-hover="true" data-activates='dropdown-{{g._id}}'></i>
-            <p>
-
-            </p>
+          <div class="card-action" dropdown data-hover="false" data-activates='dropdown-{{g.id}}'>
+            Alumnos: {{g.students.length}} <i class="fa fa-ellipsis-v right button-options" aria-hidden="true" ></i>
+            
           </div>
-          <ul id='dropdown-{{g._id}}' class='dropdown-content'>
+          <ul id='dropdown-{{g.id}}' class='dropdown-content'>
 
-            <li ><a ui-sref="alumnos({id:g._id})">Alumnos</a></li>
+            <li ><a ui-sref="alumnos({id:g.id})">Alumnos</a></li>
             <li><a href="#!">Estadisticas</a></li>
             <li><a ng-click="abrirModalGrupo(g)" >Editar</a></li>
             <li class="divider"></li>
@@ -94,7 +92,7 @@
           <div class="row">
             <div class="col l12">
               <div class="section">
-                <h5>{{grupo._id ? 'Editar grupo':'Crear grupo'}}</h5>
+                <h5>{{grupo.id ? 'Editar grupo':'Crear grupo'}}</h5>
               </div>
               <div class="divider">
 
