@@ -158,6 +158,7 @@
           data.assistances = _.sortBy(data.assistances,'date');
           console.log(data);
           $scope.asistenciasAlumno = data;
+          console.log($scope.asistenciasAlumno);
         }).error(function(e){
 
         });
