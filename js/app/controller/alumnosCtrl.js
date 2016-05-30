@@ -164,6 +164,8 @@
         });
       }
 
+
+
       $scope.cambiarAsistencia = function(a){
 
         console.log(a);
@@ -203,8 +205,13 @@
 
       $scope.removerAlumno = function(a){
         console.log(a);
+        $scope.alumno = a;
+        $("#modal-eliminar").openModal();
+      }
+
+      $scope.eliminarAlumno = function(){
         var alumno = {};
-        alumno.estudiante = a;
+        alumno.estudiante = $scope.alumno.id;
         alumno.grupo = $scope.grupo.id;
         console.log(alumno);
         AlumnosFactory.removeAlumno(alumno).success(function(data){
