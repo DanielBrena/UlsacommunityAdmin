@@ -47,11 +47,8 @@
             <span class="card-title">{{g.name}}</span>
           </div>
 
-
-
           <div class="card-action" dropdown data-hover="false" data-activates='dropdown-{{g.id}}'>
             Alumnos: {{g.students.length}} <i class="fa fa-ellipsis-v right button-options" aria-hidden="true" ></i>
-            
           </div>
           <ul id='dropdown-{{g.id}}' class='dropdown-content'>
 
@@ -61,8 +58,6 @@
             <li class="divider"></li>
             <li><a ng-click="abrirModalGrupoEliminar(g._id)" >Eliminar</a></li>
           </ul>
-
-
 
         </div>
       </div>
@@ -95,7 +90,6 @@
                 <h5>{{grupo.id ? 'Editar grupo':'Crear grupo'}}</h5>
               </div>
               <div class="divider">
-
               </div>
             </div>
           </div>
@@ -114,8 +108,6 @@
               <input type="checkbox" ng-model="grupo.status"  id="test5" />
               <label for="test5">Activo</label>
 
-
-
             </div>
             <div class="col l6">
               <div class="input-field col l12">
@@ -130,7 +122,6 @@
               <div class="input-field col l12">
                 <select  class="browser-default" required ng-model="grupo.activity"  ng-options="actividad.id as actividad.name for actividad in actividades" >
                   <option value="" disabled selected>Selecciona una actividad</option>
-
                 </select>
               </div>
 
@@ -151,11 +142,11 @@
               <i class="fa fa-close rigth" aria-hidden="true"></i>
             </button>
 
-            <button ng-show="grupo._id" ng-disabled="formularioGrupo.$invalid" ng-click="actualizarGrupo(grupo)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+            <button ng-show="grupo.id" ng-disabled="formularioGrupo.$invalid" ng-click="actualizarGrupo(grupo)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
               <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
             </button>
 
-            <button ng-hide="grupo._id" ng-disabled="formularioGrupo.$invalid" ng-click="crearGrupo(grupo)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+            <button ng-hide="grupo.id" ng-disabled="formularioGrupo.$invalid" ng-click="crearGrupo(grupo)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
               <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
             </button>
 

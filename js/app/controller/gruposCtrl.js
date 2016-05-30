@@ -79,7 +79,6 @@
         console.log(g);
         $scope.grupo = g;
 
-
       }
 
       getGrupos();
