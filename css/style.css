@@ -54,14 +54,14 @@ body {
  }
 
  .input-field input[type=text]:focus + label {
-    color: #e91e63;
+    color: #2196f3;
   }
   .input-field .prefix.active {
-       color: #e91e63;
+       color: #2196f3;
      }
      .input-field input[type=text]:focus {
-         border-bottom: 1px solid #e91e63;
-         box-shadow: 0 1px 0 0 #e91e63;
+         border-bottom: 1px solid #2196f3;
+         box-shadow: 0 1px 0 0 #2196f3;
        }
 
 .card-content-grupos{
