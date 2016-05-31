@@ -28,7 +28,6 @@
 
             }
             console.log($scope.rutaImagen);
-            //$scope.alumnos = data.students;
           }).error(function(e){
 
           });
@@ -40,6 +39,20 @@
       }
 
       getAlumnos();
+
+      $scope.findAlumnoGrupo = function(search){
+        if(search === ''){
+          getAlumnos();
+        }else{
+          AlumnosFactory.findAlumnoGrupo($scope.id,search).success(function(data){
+            $scope.grupo = data;
+            console.log(data);
+          }).error(function(e){
+
+          });
+        }
+
+      }
 
       $scope.abrirModalAlumnos = function(){
 

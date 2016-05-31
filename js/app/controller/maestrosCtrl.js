@@ -55,41 +55,6 @@
 
       getMaestros();
 
-      // $scope.actualizarSemestre = function(s){
-      //   console.log(s);
-      //   SemestresFactory.updateSemestre(s).success(function(data){
-      //     Notification.success('Semestre actualizado');
-      //     console.log(data);
-      //     getSemestres();
-      //   }).error(function(e){
-      //     Notification.error('No se puede actualizar el semestre, tal vez ya no exista.');
-      //   });
-      //
-      // }
-      //
-      // $scope.crearSemestre = function(s){
-      //   console.log(s)
-      //   SemestresFactory.createSemestre(s).success(function(data){
-      //     Notification.success('Semestre creado');
-      //     console.log(data);
-      //     getSemestres();
-      //   }).error(function(e){
-      //     Notification.error('Lo sentimos, hubo un error al crear el semestre.');
-      //   });
-      // }
-      //
-      // $scope.eliminarSemestre = function(){
-      //   SemestresFactory.deleteSemestre($scope.semestre.id).success(function(data){
-      //     Notification.success('Semestre elimado');
-      //     console.log(data);
-      //     getSemestres();
-      //     $('#modal1').closeModal();
-      //   }).error(function(e){
-      //     Notification.error('No se puede eliminar el semestre, tal vez ya se elimino.');
-      //   });
-      // }
-
-
 
 
 
