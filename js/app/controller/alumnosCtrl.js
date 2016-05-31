@@ -96,7 +96,7 @@
         var asistencia = {};
 
         asistencia.alumno = $scope.alumno.id;
-        asistencia.grupo = $scope.grupo.id;
+        asistencia.grupo = $scope.id;
         asistencia.asistenciabool = $scope.asistencias.type;
         asistencia.asistenciastring = $scope.asistencias.type2;
         asistencia.fecha = $scope.asistencias.fecha;
@@ -135,7 +135,7 @@
 
       $scope.agregarAsistencias = function(){
         $scope.asistencias.estudiantes = $scope.grupo.students;
-        $scope.asistencias.grupo = $scope.grupo.id;
+        $scope.asistencias.grupo = $scope.id;
 
         for(var i = 0; i < $scope.asistencias.estudiantes.length; i++){
           $scope.asistencias.estudiantes[i].assistance = $scope.asistencias.type;
@@ -154,7 +154,7 @@
       }
 
       $scope.eliminarAsistencias = function(){
-        $scope.asistencias.grupo = $scope.grupo.id;
+        $scope.asistencias.grupo = $scope.id;
         $scope.asistencias.fecha = $filter('date')($scope.asistencias.fecha,'yyyy-MM-dd');
         AlumnosFactory.deleteAsistencias($scope.asistencias).success(function(data){
           Notification.success('Asistencias eliminadas');
@@ -208,7 +208,7 @@
         console.log($scope.alumnosAgregados);
         var alumnoGrupo = {};
         alumnoGrupo.estudiantes = JSON.stringify($scope.alumnosAgregados);
-        alumnoGrupo.grupo = $scope.grupo.id;
+        alumnoGrupo.grupo = $scope.id;
         console.log(alumnoGrupo);
         AlumnosFactory.addAlumnos(alumnoGrupo).success(function(data){
           Notification.success(data.message);
@@ -227,7 +227,7 @@
       $scope.eliminarAlumno = function(){
         var alumno = {};
         alumno.estudiante = $scope.alumno.id;
-        alumno.grupo = $scope.grupo.id;
+        alumno.grupo = $scope.id;
         console.log(alumno);
         AlumnosFactory.removeAlumno(alumno).success(function(data){
           console.log(data);
