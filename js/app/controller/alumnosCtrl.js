@@ -166,7 +166,9 @@
       }
 
       $scope.obtenerAsistencias = function(a){
-        AlumnosFactory.getAsistencias(a.id,$scope.grupo.id).success(function(data){
+        console.log(a);
+        console.log($scope.id);
+        AlumnosFactory.getAsistencias(a.id,$scope.id).success(function(data){
           console.log(data);
           data.assistances = _.sortBy(data.assistances,'date');
           console.log(data);

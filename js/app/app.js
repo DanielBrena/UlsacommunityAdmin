@@ -1,7 +1,7 @@
 var app = angular.module('ulsa',['ui.router','ulsa.routes','ngSanitize','ui.materialize','ngLetterAvatar','720kb.tooltips','ui-notification','chart.js','ngFileUpload']);
 app.constant('CONFIG',
   {
-  //"APIURL":"http://localhost:1337/"
+//  "APIURL":"http://localhost:1337/"
   "APIURL":"http://172.16.12.10:1337/"
   }
 ).run(function($rootScope, $state, Auth) {
