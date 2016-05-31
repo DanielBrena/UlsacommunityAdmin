@@ -1,22 +1,36 @@
--<header>
-  <nav class="white pink-text ">
-    <ul class="right hide-on-med-and-down">
-      <li><a class="modal-trigger pink-text" href="#signup">Cerrar sesión</a></li>
+<header>
+  <nav class="white ">
+    <ul id="dropdown-configuracion" class="dropdown-content">
+      <li><a class="blue-text" href="#!">Perfil</a></li>
+      <li><a class="blue-text" href="#!">Configuración</a></li>
+      <li class="divider"></li>
+      <li><a class="blue-text" href="#!">Cerrar sesión</a></li>
     </ul>
 
-      <a href="#" class="brand-logo center pink-text">ULSACOMMUNTY</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a class="blue-text" href="#">3<i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+      <li><a class="dropdown-button blue-text"  data-beloworigin="false" href='javascript:void(0);' dropdown data-activates="dropdown-configuracion"> <i class="fa fa-ellipsis-v fa-fw button-options" ></i></a></li>
+
+    </ul>
+
+    <a href="#" class="brand-logo center">
+      <img class="img-logo" src="img/logopagina.png" alt="" />
+    </a>
 
 
-      <ul id="slide-out" class="side-nav pink">
-        <li><a class="white-text"href="#principal">Principal</a></li>
-        <li><a class="white-text"href="#viernes">Viernes Cultural</a></li>
-        <li><a class="white-text"href="#grupos">Grupos</a></li>
-        <li><a class="white-text"href="#semestres">Semestres</a></li>
-        <li><a class="white-text"href="#maestros">Maestros</a></li>
-        <li><a class="white-text"href="#estudiantes">Alumnos</a></li>
-      </ul>
+    <ul id="slide-out" class="side-nav blue">
+      <li><a class="white-text"href="#principal"><i class="fa fa-home" style="padding-right:20px" aria-hidden="true"></i>Principal</a></li>
+      <li><a class="white-text"href="#semestres">Semestres</a></li>
+      <li><a class="white-text"href="#actividades">Actividades</a></li>
+      <li><a class="white-text"href="#carreras">Carreras</a></li>
+      <li><a class="white-text"href="#grupos">Grupos</a></li>
+      <li><a class="white-text"href="#maestros">Maestros</a></li>
+      <li><a class="white-text"href="#estudiantes">Alumnos</a></li>
+      <li><a class="white-text"href="#eventos">Eventos</a></li>
+      <li><a class="white-text"href="#viernes">Viernes Cultural</a></li>
+    </ul>
 
-      <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large pink-text text-pink"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    <a href="#" data-activates="slide-out" data-menuwidth="500" data-closeonclick="true" class="button-collapse show-on-large blue-text "><i class="fa   fa-bars fa-fw " aria-hidden="true"></i></a>
   </nav>
 
 
@@ -39,71 +53,77 @@
       </div>
     </div>
     <div class="row">
-      <div class="col s12 m6 l3" ng-repeat="e in estudiantes | filter:query">
-        <div class="card">
-          <div class="card-image circle ">
-            <div class="" ng-if="e.gender == 'hombre'">
-              <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#90caf9" data="{{e.name}}"></ng-letter-avatar>
+      <div class="col l12 m12 s12">
+        <ul class="collection" ng-show="estudiantes.length >0" >
+          <li class="collection-item avatar" ng-repeat="e in estudiantes | filter:query">
+            <div class="row">
+              <div class="col l2 m2">
+                <div class="" ng-if="e.gender == 'hombre'">
+                  <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="round" avatarcustombgcolor="#90caf9" data="{{e.name}}"></ng-letter-avatar>
 
-            </div>
-            <div class="" ng-if="e.gender == 'mujer'">
-              <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="circle" avatarcustombgcolor="#f48fb1" data="{{e.name}}"></ng-letter-avatar>
+                </div>
+                <div class="" ng-if="e.gender == 'mujer'">
+                  <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="round" avatarcustombgcolor="#f48fb1" data="{{e.name}}"></ng-letter-avatar>
 
-            </div>
-
+                </div>
               </div>
-
-              <div class="card-content"  dropdown data-hover="false" data-activates='dropdown-{{e.id}}'>
-                <i class="fa fa-ellipsis-v  right button-options" ></i></span>
-                <p style="font-size:.7em">
-                  {{e.name.split(' ').length > 1 ? e.name.split(' ')[0]: e.name | uppercase}}
-                  {{e.lastname.split(' ').length > 1 ? e.lastname.split(' ')[0]: e.lastname | uppercase}}
+              <div class="col l8 m8">
+                <span class="title">{{e.name | uppercase}} {{e.lastname | uppercase}}</span>
+                <p>{{e.registration_number}} <br>
+                  {{e.gender | uppercase}}
                 </p>
               </div>
+              <div class="col l2 m2" dropdown data-hover="false" data-beloworigin="false" data-activates='dropdown-{{e.id}}'>
+                <i class="fa fa-ellipsis-v  right button-options" ></i></span>
+
+              </div>
+            </div>
 
 
+            <ul id='dropdown-{{e.id}}' class='dropdown-content'>
 
-          <ul id='dropdown-{{e.id}}' class='dropdown-content'>
+              <li ><a  ng-click="abrirModalGrupos(e.groups)">Grupos</a></li>
+              <li><a ng-click="abrirModalCuenta(e)">Cuenta</a></li>
+              <li class="divider"></li>
+              <li ><a  ng-click="abrirModalAlumno(e)">Editar</a></li>
+              <li><a  ng-click="abrirModalEliminar(e)">Eliminar</a></li>
+            </ul>
 
-            <li ><a  ng-click="abrirModalGrupos(e.groups)">Grupos</a></li>
-
-            <li><a href="#!">Estadisticas</a></li>
-            <li><a ng-click="abrirModalCuenta(e)">Cuenta</a></li>
-            <li class="divider"></li>
-            <li ><a  ng-click="abrirModalAlumno(e)">Editar</a></li>
-            <li><a href="#!">Eliminar</a></li>
-          </ul>
+          </li>
+        </ul>
 
       </div>
+
     </div>
 
     <div id="modal-cuenta" class="modal modal-fixed-footer ">
       <div class="modal-content " ng-form="formularioUsuario">
+        <h5>{{alumno.user.id ? 'Editar cuenta':'Crear cuenta'}}</h5>
+        <div class="divider" ></div>
 
         <div class="row">
 
           <div class="col l6 offset-l3" >
             <div input-field>
-                <input type="text" name="usuario" length="150" class="validate" ng-model="usuario.username" required >
-                <label  for="usuario" data-error="Debe ingresar un usuario" >Usuario</label>
+              <input type="text" name="usuario" length="150" class="validate" ng-model="usuario.username" required >
+              <label  for="usuario" data-error="Debe ingresar un usuario" >Usuario</label>
             </div>
             <div input-field>
-                <input type="email" name="email"  class="validate" ng-model="usuario.email" required >
-                <label  for="usuario" data-error="Debe ingresar un usuario" >Corre electronico</label>
+              <input type="email" name="email"  class="validate" ng-model="usuario.email" required >
+              <label  for="usuario" data-error="Debe ingresar un usuario" >Corre electronico</label>
             </div>
             <div input-field>
-                <input type="password" name="password"  class="validate"   ng-model="usuario.password" >
-                <label  for="usuario" data-error="Debe ingresar un usuario">Contraseña</label>
+              <input type="password" name="password"  class="validate"   ng-model="usuario.password" >
+              <label  for="usuario" data-error="Debe ingresar un usuario">Contraseña</label>
             </div>
             <input type="checkbox" ng-model="usuario.active"  id="test5" />
             <label for="test5">Activo</label>
-
-
 
           </div>
 
 
 
+        </div>
       </div>
       <div class="modal-footer center-align">
 
@@ -111,26 +131,21 @@
           <i class="fa fa-close rigth" aria-hidden="true"></i>
         </button>
 
-        <button ng-if="usuario.id" ng-disabled="formularioUsuario.$invalid" ng-click="actualizarUsuario(usuario,password)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+        <button ng-if="usuario.id" ng-disabled="formularioUsuario.$invalid" ng-click="actualizarUsuario(usuario)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
           <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         </button>
         <button ng-if="!usuario.id" ng-disabled="formularioUsuario.$invalid" ng-click="crearUsuario(usuario)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear usuario
           <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         </button>
 
-
-
-
-
-
       </div>
-    </div>
-  </div>
 
-  <div id="modal-grupos" class="modal bottom-sheet ">
-    <div class="modal-content white-text">
-      <div class="row">
-        <div class="col s12 m3 l1" ng-repeat="g in grupos">
+    </div>
+
+    <div id="modal-grupos" class="modal bottom-sheet ">
+      <div class="modal-content white-text">
+        <div class="row">
+          <div class="col s3 m4 l2" ng-repeat="g in grupos">
 
             <div class="card" ui-sref="alumnos({id:g.id})">
               <div class="card-image circle ">
@@ -141,32 +156,52 @@
                 <h6 class="center-align">{{g.name}}</h6>
               </div>
 
-
-
             </div>
+          </div>
         </div>
-      </div>
 
+
+      </div>
+    </div>
+
+    <div id="modal-eliminar" class="modal modal-fixed-footer ">
+      <div class="modal-content">
+        <h4>Eliminar alumno</h4>
+        <div class="divider">
+        </div>
+        <p>Al eliminar el alumno desaparecerá de los grupos.</p>
+      </div>
+      <div class="modal-footer center-align">
+
+        <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">
+          Cancelar
+          <i class="fa fa-close rigth" aria-hidden="true"></i>
+        </button>
+
+        <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="eliminarEstudiante()" type="submit" name="action">
+          Eliminar
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-large red">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+      <ul>
+        <li><a ng-click="abrirModalAlumno({})" class="btn-floating green"><i class="fa fa-plus fa-fw" aria-hidden="true"></i></a></li>
+      </ul>
 
     </div>
-  </div>
-</div>
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <a class="btn-floating btn-large red">
-    <i class="fa fa-pencil" aria-hidden="true"></i>
-  </a>
-  <ul>
-    <li><a ng-click="abrirModalAlumno({})" class="btn-floating green"><i class="fa fa-plus fa-fw" aria-hidden="true"></i></a></li>
-  </ul>
 
-</div>
+  </main>
 
-</main>
-
-<div id="modal-grupos" class="modal bottom-sheet ">
-  <div class="modal-content white-text">
-    <div class="row">
-      <div class="col s12 m3 l1" ng-repeat="g in grupos">
+  <div id="modal-grupos" class="modal bottom-sheet ">
+    <div class="modal-content white-text">
+      <div class="row">
+        <div class="col s12 m3 l1" ng-repeat="g in grupos">
           <div class="card" ui-sref="alumnos({id:g.id})">
             <div class="card-image circle ">
               <ng-letter-avatar fontFamily="Roboto" alphabetcolors="alphabetcolors" class="pink" data="{{g.name}}" ></ng-letter-avatar>
@@ -175,121 +210,122 @@
               <h6 class="center-align">{{g.name}}</h6>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div id="modal-alumno" class="modal modal-fixed-footer ">
-  <div class="modal-content " >
-    <form class="" name="formularioEstudiante">
+  <div id="modal-alumno" class="modal modal-fixed-footer ">
+    <div class="modal-content " >
+      <form class="" name="formularioEstudiante">
 
 
-    <div class="row">
-      <div class="col l12">
-        <div class="section">
-          <h5>{{alumno.id ? 'Editar alumno':'Crear alumno'}}</h5>
+        <div class="row">
+          <div class="col l12">
+            <div class="section">
+              <h5>{{alumno.id ? 'Editar alumno':'Crear alumno'}}</h5>
+            </div>
+            <div class="divider">
+
+            </div>
+          </div>
         </div>
-        <div class="divider">
+        <div class="row">
+
+          <div class="col l6" >
+            <div input-field>
+              <input type="text" name="matricula" length="150" class="validate" ng-model="alumno.registration_number" required >
+              <label  for="matricula" data-error="Debe ingresar una matricula" >Matricula</label>
+            </div>
+
+            <div input-field>
+              <input type="text" name="nombre" length="150" class="validate" ng-model="alumno.name" required >
+              <label  for="nombre" data-error="Debe ingresar un nombre" >Nombre del alumno</label>
+            </div>
+
+            <div input-field>
+              <input type="text" name="apellidos" length="150" class="validate" ng-model="alumno.lastname" required >
+              <label  for="apellidos" data-error="Debe ingresar apellidos" >Apellidos</label>
+            </div>
+
+
+
+
+          </div>
+          <div class="col l6">
+            <div class="input-field col l12">
+              <select  ng-model="alumno.gender" required class="browser-default"  >
+                <option value="" disabled selected>Selecciona un genero</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+              </select>
+            </div>
+
+            <div class="input-field col l12">
+              <select  ng-model="alumno.semester"  class="browser-default"  >
+                <option value="" disabled selected>Selecciona un semestre</option>
+                <option value="1">Primer semestre</option>
+                <option value="2">Segundo semestre</option>
+                <option value="3">Tercer semestre</option>
+                <option value="4">Cuarto semestre</option>
+                <option value="5">Quinto semestre</option>
+                <option value="6">Sexto semestre</option>
+                <option value="7">Septimo semestre</option>
+                <option value="8">Octavo semestre</option>
+                <option value="9">Noveno semestre</option>
+                <option value="10">Decimo semestre</option>
+
+              </select>
+            </div>
+            <div class="input-field col l12">
+              <select  class="browser-default"  ng-model="alumno.career"  ng-options="carrera.id as carrera.name for carrera in carreras" >
+                <option value="" disabled selected>Selecciona una carrera</option>
+
+              </select>
+            </div>
+
+
+          </div>
+
+
 
         </div>
       </div>
-    </div>
-    <div class="row">
+      <div class="modal-footer center-align">
 
-      <div class="col l6" >
-        <div input-field>
-          <input type="text" name="matricula" length="150" class="validate" ng-model="alumno.registration_number" required >
-          <label  for="matricula" data-error="Debe ingresar una matricula" >Matricula</label>
-        </div>
+        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+          <i class="fa fa-close rigth" aria-hidden="true"></i>
+        </button>
 
-        <div input-field>
-          <input type="text" name="nombre" length="150" class="validate" ng-model="alumno.name" required >
-          <label  for="nombre" data-error="Debe ingresar un nombre" >Nombre del alumno</label>
-        </div>
+        <button ng-show="alumno.id" ng-disabled="formularioEstudiante.$invalid" ng-click="editarEstudiante(alumno)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        </button>
 
-        <div input-field>
-          <input type="text" name="apellidos" length="150" class="validate" ng-model="alumno.lastname" required >
-          <label  for="apellidos" data-error="Debe ingresar apellidos" >Apellidos</label>
-        </div>
-
-
-
+        <button ng-hide="alumno.id" ng-disabled="formularioEstudiante.$invalid" ng-click="crearEstudiante(alumno)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        </button>
 
       </div>
-      <div class="col l6">
-        <div class="input-field col l12">
-          <select  ng-model="alumno.gender" required class="browser-default"  >
-            <option value="" disabled selected>Selecciona un genero</option>
-            <option value="hombre">Hombre</option>
-            <option value="mujer">Mujer</option>
-          </select>
-        </div>
-
-        <div class="input-field col l12">
-          <select  ng-model="alumno.semester"  class="browser-default"  >
-            <option value="" disabled selected>Selecciona un semestre</option>
-            <option value="1">Primer semestre</option>
-            <option value="2">Segundo semestre</option>
-            <option value="3">Tercer semestre</option>
-            <option value="4">Cuarto semestre</option>
-            <option value="5">Quinto semestre</option>
-            <option value="6">Sexto semestre</option>
-            <option value="7">Septimo semestre</option>
-            <option value="8">Octavo semestre</option>
-            <option value="9">Noveno semestre</option>
-            <option value="10">Decimo semestre</option>
-
-          </select>
-        </div>
-        <div class="input-field col l12">
-          <select  class="browser-default"  ng-model="alumno.career"  ng-options="carrera.id as carrera.name for carrera in carreras" >
-            <option value="" disabled selected>Selecciona una carrera</option>
-
-          </select>
-        </div>
-
-
-      </div>
-
-
-
-    </div>
-    <div class="modal-footer center-align">
-
-      <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
-        <i class="fa fa-close rigth" aria-hidden="true"></i>
-      </button>
-
-      <button ng-show="alumno.id" ng-disabled="formularioEstudiante.$invalid" ng-click="editarEstudiante(alumno)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Actualizar
-        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-      </button>
-
-      <button ng-hide="alumno.id" ng-disabled="formularioEstudiante.$invalid" ng-click="crearEstudiante(alumno)" class="btn waves-effect waves-light light-blue accent-2" type="submit" name="action">Crear
-        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-      </button>
-
-    </div>
     </form>
+
   </div>
-</div>
 
 
-<footer class="page-footer pink">
-  <div class="container">
-    <div class="row">
-      <div class="col l12 s12">
-        <!-- <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+  <footer class="page-footer pink">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <!-- <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+
+        </div>
 
       </div>
-
     </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2016 ULSACOMMUNITY TEAM
-      <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+    <div class="footer-copyright">
+      <div class="container">
+        © 2016 ULSACOMMUNITY TEAM
+        <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>

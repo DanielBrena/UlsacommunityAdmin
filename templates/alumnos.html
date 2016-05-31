@@ -50,42 +50,42 @@
         </div>
         <div class="row">
           <div class="col s12 l12 m12">
-          <ul class="collection" >
-            <li class="collection-item avatar" ng-repeat="a in grupo.students | filter:query1">
-              <div class="row">
-                <div class="col l2 m2">
-                  <div class="" ng-if="a.gender == 'hombre'">
-                    <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="round" avatarcustombgcolor="#90caf9" data="{{a.name}}"></ng-letter-avatar>
+            <ul class="collection" >
+              <li class="collection-item avatar" ng-repeat="a in grupo.students | filter:query1">
+                <div class="row">
+                  <div class="col l2 m2">
+                    <div class="" ng-if="a.gender == 'hombre'">
+                      <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="round" avatarcustombgcolor="#90caf9" data="{{a.name}}"></ng-letter-avatar>
+
+                    </div>
+                    <div class="" ng-if="a.gender == 'mujer'">
+                      <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="round" avatarcustombgcolor="#f48fb1" data="{{a.name}}"></ng-letter-avatar>
+
+                    </div>
+                  </div>
+                  <div class="col l8 m8">
+                    <span class="title">{{a.name}} {{a.lastname}}</span>
+                    <p>{{a.registration_number}} <br>
+                      {{a.gender}}
+                    </p>
+                  </div>
+                  <div class="col l2 m2" dropdown data-hover="false" data-activates='dropdown-{{a.id}}'>
+                    <i class="fa fa-ellipsis-v  right button-options" ></i></span>
 
                   </div>
-                  <div class="" ng-if="a.gender == 'mujer'">
-                    <ng-letter-avatar fontFamily="Roboto" dynamic=true  class="round" avatarcustombgcolor="#f48fb1" data="{{a.name}}"></ng-letter-avatar>
-
-                  </div>
                 </div>
-                <div class="col l8 m8">
-                  <span class="title">{{a.name}} {{a.lastname}}</span>
-                  <p>{{a.registration_number}} <br>
-                     {{a.gender}}
-                  </p>
-                </div>
-                <div class="col l2 m2" dropdown data-hover="false" data-activates='dropdown-{{a.id}}'>
-                  <i class="fa fa-ellipsis-v  right button-options" ></i></span>
 
-                </div>
-              </div>
+                <ul id='dropdown-{{a.id}}' class='dropdown-content'>
 
-              <ul id='dropdown-{{a.id}}' class='dropdown-content'>
-            
-                <li><a ng-click="agregarAsistenciaModal(a)">Agregar Asistencia</a></li>
-                <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
-                <li class="divider"></li>
-                <li><a ng-click="removerAlumno(a)">Remover</a></li>
-              </ul>
-            </li>
+                  <li><a ng-click="agregarAsistenciaModal(a)">Agregar Asistencia</a></li>
+                  <li><a ng-click="obtenerAsistencias(a)">Asistencias</a></li>
+                  <li class="divider"></li>
+                  <li><a ng-click="removerAlumno(a)">Remover</a></li>
+                </ul>
+              </li>
 
-          </ul>
-        </div>
+            </ul>
+          </div>
 
 
 

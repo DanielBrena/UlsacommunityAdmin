@@ -1,4 +1,4 @@
-var app = angular.module('ulsa',['ui.router','ulsa.routes','ngSanitize','ui.materialize','ngLetterAvatar','ui-notification','chart.js','ngFileUpload']);
+var app = angular.module('ulsa',['ui.router','ulsa.routes','ngSanitize','ui.materialize','ngLetterAvatar','720kb.tooltips','ui-notification','chart.js','ngFileUpload']);
 app.constant('CONFIG',
   {
   //"APIURL":"http://localhost:1337/"

@@ -46,6 +46,14 @@
           var resultado = $http.put(CONFIG.APIURL + "students/"+alumno.id,alumno);
           return resultado;
         },
+        updateUserAlumno:function(user){
+          var resultado = $http.put(CONFIG.APIURL + "users/"+user.id,user);
+          return resultado;
+        },
+        deleteAlumno:function(alumno){
+          var resultado = $http.delete(CONFIG.APIURL + "students/"+alumno.id,alumno);
+          return resultado;
+        },
         removeAlumno:function(alumno){
           var resultado = $http.post(CONFIG.APIURL + "groups/removeStudent",alumno);
           return resultado;

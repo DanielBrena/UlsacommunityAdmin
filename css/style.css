@@ -1,3 +1,6 @@
+.img-logo {
+  height: 64px !important;
+}
 video {
   position: fixed;
   top: 50%;
@@ -78,3 +81,6 @@ waves
 .parallax-container {
       height: 250px;
     }
+  .collection{
+    overflow: visible;
+  }

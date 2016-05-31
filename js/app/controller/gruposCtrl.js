@@ -15,6 +15,22 @@
         });
       }
 
+      $scope.findGrupos = function(query){
+        var q = {};
+        q.query = query;
+        if(query == ''){
+          getGrupos();
+        }else{
+          GruposFactory.findGrupos(q).success(function(data){
+            console.log(data);
+            $scope.grupos = data;
+          }).error(function(e){
+
+          })
+        }
+
+      }
+
       function getActividades(){
         ActividadesFactory.getActividades().success(function(data){
           $scope.actividades = data;

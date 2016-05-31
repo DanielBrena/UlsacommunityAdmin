@@ -6,6 +6,10 @@
           var resultado = $http.get(CONFIG.APIURL + "groups");
           return resultado;
         },
+        findGrupos:function(query){
+          var resultado = $http.post(CONFIG.APIURL + "groups/findGroupsQuery",query);
+          return resultado;
+        },
         getAllGrupos:function(){
           var resultado = $http.get(CONFIG.APIURL + "statistics/allGroups");
           return resultado;
