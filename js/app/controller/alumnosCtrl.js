@@ -191,6 +191,11 @@
         console.log(a);
         console.log($scope.id);
         AlumnosFactory.getAsistencias(a.id,$scope.id).success(function(data){
+          console.log($scope.countAssistances);
+          data.assistances = _.sortBy(data.assistances,'date');
+          console.log(data);
+          $scope.asistenciasAlumno = data;
+          console.log($scope.asistenciasAlumno);
           console.log(data);
           $scope.countAssistances = _.groupBy(data.assistances,function(data){
             console.log(data);
@@ -199,16 +204,17 @@
             }
 
           });
-          if($scope.countAssistances.true.length > 0){
-            getCalificacion($scope.countAssistances.true.length);
-          }else{
-            $scope.countAssistances.true = [];
+
+          if($scope.countAssistances.true !== undefined){
+            if($scope.countAssistances.true.length > 0){
+              getCalificacion($scope.countAssistances.true.length);
+            }else{
+              $scope.countAssistances.true = [];
+            }
           }
-          console.log($scope.countAssistances);
-          data.assistances = _.sortBy(data.assistances,'date');
-          console.log(data);
-          $scope.asistenciasAlumno = data;
-          console.log($scope.asistenciasAlumno);
+
+
+
         }).error(function(e){
 
         });
