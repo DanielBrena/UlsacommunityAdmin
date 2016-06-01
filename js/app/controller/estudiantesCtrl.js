@@ -13,9 +13,12 @@
     }
 
     $scope.abrirModalCuenta = function(u){
+      $scope.usuario = {};
       $('#modal-cuenta').openModal();
       $scope.alumno = u;
-      if(u.user.id){
+      if(u.user === undefined){
+        $scope.usuario = {};
+      }else{
         $scope.usuario = u.user;
       }
     }

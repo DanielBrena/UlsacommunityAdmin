@@ -113,25 +113,31 @@
   </div>
 
   <!--Modal-->
-  <div id="modal1" class="modal modal-fixed-footer pink">
-    <div class="modal-content white-text">
-      <h4>Generar reporte</h4>
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content ">
+      <h5>Generar reporte</h5>
+      <div class="divider">
+
+      </div>
 
       <div class="input-field col s12">
-        <select ng-change="generarLink(fecha)"  class="browser-default pink-text" ng-model="fecha"  ng-options="fecha as fecha.name for fecha in fechas track by fecha.value" >
+        <select ng-change="generarLink(fecha)"  class="browser-default blue-text" ng-model="fecha"  ng-options="fecha as fecha.name for fecha in fechas track by fecha.value" >
         </select>
       </div>
 
     </div>
-    <div class="modal-footer">
-
-      <button ng-click="generarReporte()" class="btn btn-small waves-effect waves-light light-blue accent-2"  type="submit" name="action">
-        Generar
-      </button>
+    <div class="modal-footer center-align">
 
       <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">
+        Cerrar
         <i class="fa fa-close rigth" aria-hidden="true"></i>
       </button>
+
+      <button ng-click="generarReporte()" class="btn btn-small waves-effect waves-light light-blue accent-2"  type="submit" name="action">
+        Generar reporte
+      </button>
+
+
 
       <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
     </div>

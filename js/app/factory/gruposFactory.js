@@ -27,6 +27,10 @@
           var resultado = $http.post(CONFIG.APIURL + "groups/",grupo);
           return resultado;
         },
+        addMaestro:function(grupo,maestro){
+          var resultado = $http.post(CONFIG.APIURL + "groups/addTeacher",{group:grupo,teacher:maestro});
+          return resultado;
+        },
         uploadImagen:function(grupo){
           var resultado = Upload.upload({
              url: CONFIG.APIURL + "groups/uploadImage",

@@ -195,17 +195,20 @@
       </a>
       <ul>
         <li>
-          <a ng-click="abrirModalImagen()" tooltips tooltip-template="Agregar imagen de portada" tooltip-side="left" tooltip-size="small" class="btn-floating cyan"><i class="fa fa-image" aria-hidden="true"></i>
+          <a ng-click="abrirModalMaestro()" tooltips tooltip-template="Asignar un maestro" tooltip-side="left" tooltip-size="small" class="btn-floating cyan"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a ng-click="abrirModalImagen()" tooltips tooltip-template="Agregar imagen de portada" tooltip-side="left" tooltip-size="small" class="btn-floating blue"><i class="fa fa-image" aria-hidden="true"></i>
           </a>
         </li>
 
         <li>
-          <a ng-click="abrirModalAlumnos()" tooltips tooltip-template="Agregar un alumno al grupo" tooltip-side="left" tooltip-size="small" class="btn-floating blue"><i class="fa fa-user" aria-hidden="true"></i>
+          <a ng-click="abrirModalAlumnos()" tooltips tooltip-template="Agregar un alumno al grupo" tooltip-side="left" tooltip-size="small" class="btn-floating indigo"><i class="fa fa-user" aria-hidden="true"></i>
           </a>
         </li>
 
         <li>
-          <a ng-click="abrirModalAsistencias()" tooltips tooltip-template="Agregar asistencias" tooltip-side="left" tooltip-size="small" class="btn-floating indigo"><i class="fa fa-calendar" aria-hidden="true"></i>
+          <a ng-click="abrirModalAsistencias()" tooltips tooltip-template="Agregar asistencias" tooltip-side="left" tooltip-size="small" class="btn-floating purple"><i class="fa fa-calendar" aria-hidden="true"></i>
           </a>
         </li>
 
@@ -232,6 +235,39 @@
 
       <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="eliminarAlumno()" type="submit" name="action">
         Remover
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <div id="modal-maestro" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <h5>Asignar maestro</h5>
+      <div class="divider">
+      </div>
+
+      <div class="row ">
+        <div class="col l10 m10 s10 center-align">
+          <div class="input-field col l12 m12 s12">
+            <select  class="browser-default"  ng-model="grupo.teacher.id"  ng-options="maestro.id as maestro.name for maestro in maestros" >
+              <option value="" disabled selected>Selecciona una maestro</option>
+
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer center-align">
+
+
+      <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">
+        Cancelar
+        <i class="fa fa-close rigth" aria-hidden="true"></i>
+      </button>
+
+      <button   class="btn btn-small waves-effect waves-light light-blue accent-2" ng-click="asignarMaestro(grupo)" type="submit" name="action">
+        Asignar
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
 

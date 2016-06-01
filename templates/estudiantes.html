@@ -82,11 +82,11 @@
 
             <ul id='dropdown-{{e.id}}' class='dropdown-content'>
 
-              <li ><a  ng-click="abrirModalGrupos(e.groups)">Grupos</a></li>
-              <li><a ng-click="abrirModalCuenta(e)">Cuenta</a></li>
+              <li ><a class="blue-text" ng-click="abrirModalGrupos(e.groups)">Grupos</a></li>
+              <li><a class="blue-text"ng-click="abrirModalCuenta(e)">Cuenta</a></li>
               <li class="divider"></li>
-              <li ><a  ng-click="abrirModalAlumno(e)">Editar</a></li>
-              <li><a  ng-click="abrirModalEliminar(e)">Eliminar</a></li>
+              <li ><a class="blue-text" ng-click="abrirModalAlumno(e)">Editar</a></li>
+              <li><a  class="blue-text"ng-click="abrirModalEliminar(e)">Eliminar</a></li>
             </ul>
 
           </li>
@@ -127,7 +127,7 @@
       </div>
       <div class="modal-footer center-align">
 
-        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cerrar
           <i class="fa fa-close rigth" aria-hidden="true"></i>
         </button>
 
@@ -174,7 +174,7 @@
       <div class="modal-footer center-align">
 
         <button   class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">
-          Cancelar
+          Cerrar
           <i class="fa fa-close rigth" aria-hidden="true"></i>
         </button>
 
@@ -277,7 +277,7 @@
               </select>
             </div>
             <div class="input-field col l12">
-              <select  class="browser-default"  ng-model="alumno.career"  ng-options="carrera.id as carrera.name for carrera in carreras" >
+              <select  class="browser-default"  ng-model="alumno.career"  ng-options="carrera.id as carrera.name  for carrera in carreras" >
                 <option value="" disabled selected>Selecciona una carrera</option>
 
               </select>
@@ -292,7 +292,7 @@
       </div>
       <div class="modal-footer center-align">
 
-        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cancelar
+        <button  class="btn btn-small waves-effect waves-light purple accent-3 modal-close" type="submit" name="action">Cerrar
           <i class="fa fa-close rigth" aria-hidden="true"></i>
         </button>
 

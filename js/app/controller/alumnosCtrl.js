@@ -1,7 +1,7 @@
 (function() {
 
     'use strict';
-    app.controller('AlumnosCtrl', function($scope,CONFIG,$filter, $state,$stateParams,AlumnosFactory,Notification,GruposFactory){
+    app.controller('AlumnosCtrl', function($scope,CONFIG,$filter, $state,$stateParams,AlumnosFactory,MaestrosFactory,Notification,GruposFactory){
       $scope.id = $stateParams.id;
 
       $scope.alphabetcolors = ["#1de9b6","#00b0ff","#00e5ff","#00e676","#76ff03","#c6ff00","#f9a825","#ff8f00","#ef6c00"];
@@ -12,11 +12,19 @@
       $(".button-collapse").sideNav();
       $('.parallax').parallax();
 
+      function getMaestros(){
+        MaestrosFactory.getMaestros().success(function(data){
+          console.log(data);
+          $scope.maestros = data;
+        }).error(function(e){
+
+        });
+      }
 
       function getAlumnos(){
         setTimeout(function() {
           AlumnosFactory.getAlumnos($scope.id).success(function(data){
-            console.log(data);
+            console.info(data);
             $scope.grupo = data;
             $scope.titulo = data.name;
             if($scope.grupo.image){
@@ -45,8 +53,9 @@
           getAlumnos();
         }else{
           AlumnosFactory.findAlumnoGrupo($scope.id,search).success(function(data){
-            $scope.grupo = data;
-            console.log(data);
+            $scope.grupo.students = data.students;
+
+            console.info(data);
           }).error(function(e){
 
           });
@@ -63,6 +72,12 @@
       $scope.abrirModalImagen = function(){
         $('#modal-imagen').openModal();
       }
+
+      $scope.abrirModalMaestro = function(){
+        $('#modal-maestro').openModal();
+        getMaestros();
+      }
+
       $scope.abrirModalAsistencias = function(){
         $scope.alumno = null;
         $("#modal-asistencias").openModal();
@@ -89,8 +104,17 @@
         $("#modal-asistencias").openModal();
         $scope.alumno = a;
 
+      }
 
-
+      $scope.asignarMaestro = function(g){
+        console.log(g);
+        console.log($scope.grupo.id + "  "+$scope.grupo.teacher.id);
+        GruposFactory.addMaestro($scope.grupo.id,$scope.grupo.teacher.id).success(function(data){
+          console.log(data);
+          Notification.success("Maestro asignado");
+        }).error(function(e){
+          Notification.error("No se pudo asignar al maestro");
+        });
       }
       $scope.agregarAsistencia = function(){
         var asistencia = {};
@@ -126,12 +150,10 @@
           getAlumnos();
         }).error(function(e){
 
-        })
-
-
-
+        });
         console.log(grupo);
       }
+
 
       $scope.agregarAsistencias = function(){
         $scope.asistencias.estudiantes = $scope.grupo.students;
