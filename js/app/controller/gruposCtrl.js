@@ -99,17 +99,8 @@
 
       getGrupos();
 
-        $(".button-collapse").sideNav();
-         $('.button-collapse').sideNav('hide');
-
-
-
-
-
-
-
-
-
+      $(".button-collapse").sideNav();
+      $('.button-collapse').sideNav('hide');
     });
 
 
