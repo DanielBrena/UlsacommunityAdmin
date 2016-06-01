@@ -30,6 +30,10 @@
           var resultado = $http.put(CONFIG.APIURL + "assistances/" + asistencia.id,asistencia);
           return resultado;
         },
+        getCalificacion:function(asistencias){
+          var resultado = $http.get(CONFIG.APIURL + "tablequalification/getQualification/"+asistencias);
+          return resultado;
+        },
         findAlumno:function(query){
           var resultado = $http.post(CONFIG.APIURL + "students/findByQuery",{search:query});
           return resultado;

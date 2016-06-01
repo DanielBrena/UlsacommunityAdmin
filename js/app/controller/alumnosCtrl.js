@@ -192,10 +192,32 @@
         console.log($scope.id);
         AlumnosFactory.getAsistencias(a.id,$scope.id).success(function(data){
           console.log(data);
+          $scope.countAssistances = _.groupBy(data.assistances,function(data){
+            console.log(data);
+            if(data.type2 == 'asistencia'){
+              return data.type;
+            }
+
+          });
+          if($scope.countAssistances.true.length > 0){
+            getCalificacion($scope.countAssistances.true.length);
+          }else{
+            $scope.countAssistances.true = [];
+          }
+          console.log($scope.countAssistances);
           data.assistances = _.sortBy(data.assistances,'date');
           console.log(data);
           $scope.asistenciasAlumno = data;
           console.log($scope.asistenciasAlumno);
+        }).error(function(e){
+
+        });
+      }
+
+      function getCalificacion(asistencias){
+        AlumnosFactory.getCalificacion(asistencias).success(function(data){
+          console.log(data);
+          $scope.countAssistances.calificacion = data;
         }).error(function(e){
 
         });

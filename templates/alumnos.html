@@ -138,20 +138,20 @@
                     <div class="texto valign">
                       <h6>Asistencias</h6>
                       <p>
-                        10
+                        {{countAssistances.true ? countAssistances.true.length : 0}}
                       </p>
                     </div>
                   </div>
                   <div class="col s4 m4 l4">
                     <h6>Inasistencias</h6>
                     <p>
-                      10
+                      {{countAssistances.false ? countAssistances.false.length : 0}}
                     </p>
                   </div>
                   <div class="col s4 m4 l4">
                     <h6>Calificación</h6>
                     <p>
-                      10
+                      {{countAssistances.calificacion.qualification}}
                     </p>
                   </div>
                 </div>
